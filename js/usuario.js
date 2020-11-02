@@ -249,7 +249,8 @@ function Registrar_Usuario(){
             usuario:usu,
             contrasena:contra,
             sexo:sexo,
-            rol:rol
+            rol:rol,
+            email:email
         }
     }).done(function(resp){
         if(resp>0){
