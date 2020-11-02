@@ -94,8 +94,8 @@
           }
         }
 
-        function Modificar_Datos_Usuario($idusuario,$sexo,$rol){
-                $sql = "call SP_MODIFICAR_DATOS_USUARIO('$idusuario','$sexo','$rol')";
+        function Modificar_Datos_Usuario($idusuario,$sexo,$rol,$email){
+                $sql = "call SP_MODIFICAR_DATOS_USUARIO('$idusuario','$sexo','$rol','$email')";
           if ($consulta = $this->conexion->conexion->query($sql)) {
             return 1;
           }else{

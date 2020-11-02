@@ -117,7 +117,12 @@
                     <label for="">Usuario</label>
                     <input type="text" class="form-control" id="txtusu_editar" placeholder="Ingresa el usuario" disabled><br>
                 </div>
-
+                <div class="col-lg-12">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" id="txt_email_editar" placeholder="Ingresa el email"><br>
+                    <label for="" id="emailOK_editar" style="color:red"></label>
+                    <input type="text" id="validar_email_editar" hidden>
+                </div>
                 <div class="col-lg-12">
                     <label for="">Sexo</label>
                     <select class="js-example-basic-single" name="state" id="cbm_sexo_editar" style="width:100%;">
@@ -163,6 +168,19 @@ document.getElementById('txt_email').addEventListener('input',function(){
     $(this).css("border","1px solid red");
     $("#emailOK").html("Email incorrecto");
     $("#validar_email").val("incorrecto");
+  }
+});
+document.getElementById('txt_email_editar').addEventListener('input',function(){
+  campo=event.target;
+  emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+  if(emailRegex.test(campo.value)){
+      $(this).css("border","");
+      $("#emailOK_editar").html("");
+      $("#validar_email_editar").val("correcto");
+  }else{
+    $(this).css("border","1px solid red");
+    $("#emailOK_editar").html("Email incorrecto");
+    $("#validar_email_editar").val("incorrecto");
   }
 });
 </script>

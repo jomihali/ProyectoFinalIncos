@@ -168,6 +168,7 @@ $('#tabla_usuario').on('click','.editar',function(){
     $("#modal_editar").modal('show');
     $("#txtidusuario").val(data.usu_id);
     $("#txtusu_editar").val(data.usu_nombre);
+    $("#txt_email_editar").val(data.usu_email);
     $("#cbm_sexo_editar").val(data.usu_sexo).trigger("change");
     $("#cbm_rol_editar").val(data.rol_id).trigger("change");
 })
@@ -274,8 +275,13 @@ function Modificar_Usuario(){
     var idusuario = $("#txtidusuario").val();
     var sexo = $("#cbm_sexo_editar").val();
     var rol = $("#cbm_rol_editar").val();
+    var email =$("#txt_email_editar").val();
+    var validaremail=$("#validar_email_editar").val();
     if(idusuario.length==0 || sexo.length==0 || rol.length==0){
         return Swal.fire("Mensaje De Advertencia","Llene campos vacios","warning");
+    }
+    if(validaremail=="incorrecto"){
+        return Swal.fire("Mensaje De Advertencia","El formato de email es incorrecto,Ingresa un formato valido","warning");
     }
     $.ajax({
         "url":"../controlador/usuario/controlador_usuario_modificar.php",
@@ -283,7 +289,8 @@ function Modificar_Usuario(){
         data:{
             idusuario:idusuario,
             sexo:sexo,
-            rol:rol
+            rol:rol,
+            email:email
         }
     }).done(function(resp){
         if(resp>0){
