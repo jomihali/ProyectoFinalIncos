@@ -56,8 +56,8 @@
 				$this->conexion->cerrar();
 			}
 		}
-        function Registrar_Usuario($usuario,$contra,$sexo,$rol){
-            $sql = "call SP_REGISTRAR_USUARIO('$usuario','$contra','$sexo','$rol')";
+        function Registrar_Usuario($usuario,$contra,$sexo,$rol,$email){
+            $sql = "call SP_REGISTRAR_USUARIO('$usuario','$contra','$sexo','$rol','$email')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);

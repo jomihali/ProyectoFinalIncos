@@ -67,7 +67,7 @@
                     <label for="">Email</label>
                     <input type="text" class="form-control" id="txt_email" placeholder="Ingresa el email"><br>
                     <label for="" id="emailOK" style="color:red"></label>
-                    <input type="text" id="validar_email">
+                    <input type="text" id="validar_email" hidden>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Contrase&ntilde;a</label>
@@ -162,7 +162,7 @@ document.getElementById('txt_email').addEventListener('input',function(){
   }else{
     $(this).css("border","1px solid red");
     $("#emailOK").html("Email incorrecto");
-    $("#validar_email").val("Incorrecto");
+    $("#validar_email").val("incorrecto");
   }
 });
 </script>
