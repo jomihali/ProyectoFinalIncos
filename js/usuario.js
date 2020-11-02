@@ -85,6 +85,7 @@ function listar_usuario(){
        "columns":[
            {"data":"posicion"},
            {"data":"usu_nombre"},
+           {"data":"usu_email"},
            {"data":"rol_nombre"},
            {"data":"usu_sexo",
            // funcion sexo

@@ -30,9 +30,10 @@
                     <tr>
                         <th>#</th>
                         <th>Usuario</th>
+                        <th>Email</th>
                         <th>Rol</th>
                         <th>Sexo</th>
-                        <th>Estatus</th>
+                        <th>Estado</th>
                         <th>Acci&oacute;n</th>
                     </tr>
                 </thead>
@@ -40,9 +41,10 @@
                     <tr>
                         <th>#</th>
                         <th>Usuario</th>
+                        <th>Email</th>
                         <th>Rol</th>
                         <th>Sexo</th>
-                        <th>Estatus</th>
+                        <th>Estado</th>
                         <th>Acci&oacute;n</th>
                     </tr>
                 </tfoot>
