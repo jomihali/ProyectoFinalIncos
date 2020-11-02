@@ -66,7 +66,8 @@
                 <div class="col-lg-12">
                     <label for="">Email</label>
                     <input type="text" class="form-control" id="txt_email" placeholder="Ingresa el email"><br>
-                    ><label for="" id="emailOK" style="color:red"></label>
+                    <label for="" id="emailOK" style="color:red"></label>
+                    <input type="text" id="validar_email">
                 </div>
                 <div class="col-lg-12">
                     <label for="">Contrase&ntilde;a</label>
@@ -157,9 +158,11 @@ document.getElementById('txt_email').addEventListener('input',function(){
   if(emailRegex.test(campo.value)){
       $(this).css("border","");
       $("#emailOK").html("");
+      $("#validar_email").val("correcto");
   }else{
     $(this).css("border","1px solid red");
     $("#emailOK").html("Email incorrecto");
+    $("#validar_email").val("Incorrecto");
   }
 });
 </script>

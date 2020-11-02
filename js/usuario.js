@@ -231,11 +231,17 @@ function Registrar_Usuario(){
     var contra2 = $("#txt_con2").val();
     var sexo = $("#cbm_sexo").val();
     var rol = $("#cbm_rol").val();
+    var email = $("txt_email").val();
+    var validaremail=$("#validar_email").val();
     if(usu.length==0 || contra.length==0 || contra.length==0 || contra2.length==0 || sexo.length==0 || rol.length==0){
         return Swal.fire("Mensaje De Advertencia","Llene campos vacios","warning");
     }
     if(contra != contra2){
         return Swal.fire("Mensaje De Advertencia","Las contraseñas deben coincidir","warning");
+    }
+    if(validaremail=="Incorrecto"){
+        Swal.fire("Mensaje De advertencia","El formato de email es incorrecto, ingrese un formato valido","error");
+       
     }
     $.ajax({
         "url":"../controlador/usuario/controlador_usuario_registro.php",
