@@ -185,4 +185,12 @@ document.getElementById('txt_email_editar').addEventListener('input',function(){
     $("#validar_email_editar").val("incorrecto");
   }
 });
+$('.box').boxWidget({
+    animationSpeed:500,
+    collapseTrigger:'[data-widget="collapse"]',
+    removeTrigger:'[data-widget="remove"]',
+    collapseIcon:'fa-minus',
+    expandIcon:'fa-plus',
+    removeIcon:'fa-times'
+})
 </script>

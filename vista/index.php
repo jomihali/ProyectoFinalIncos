@@ -277,7 +277,7 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
             </span>
           </a>
           <a onclick="cargar_contenido('contenido_principal','procedimiento/vista_procedimiento_listar.php')">
-            <i class="fa fa-users"></i> <span>Procedimiento</span>
+            <i class="fa fa-spinner"></i> <span>Procedimiento</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
