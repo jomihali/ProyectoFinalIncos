@@ -48,48 +48,25 @@
             </div>
     </div>
 </div>
-<form autocomplete="false" onsubmit="return false">
     <div class="modal fade" id="modal_registro" role="dialog">
         <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><b>Registrar Usuario</b></h4>
+            <h4 class="modal-title"><b>Registrar Servicio</b></h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
-                    <label for="">Usuario</label>
-                    <input type="text" class="form-control" id="txt_usu" placeholder="Ingresa el usuario"><br>
+                    <label for="">Nombre</label>
+                    <input type="text" class="form-control" id="txt_prodecimiento" placeholder="Ingresa el procedimiento"><br>
                 </div>
                 <div class="col-lg-12">
-                    <label for="">Email</label>
-                    <input type="text" class="form-control" id="txt_email" placeholder="Ingresa el email"><br>
-                    <label for="" id="emailOK" style="color:red"></label>
-                    <input type="text" id="validar_email" hidden>
-                </div>
-                <div class="col-lg-12">
-                    <label for="">Contrase&ntilde;a</label>
-                    <input type="password" class="form-control" id="txt_con1" placeholder="Ingrese la contrase&ntilde;a"><br>
-                </div>
-                <div class="col-lg-12">
-                    <label for="">Repite la Contrase&ntilde;a</label>
-                    <input type="password" class="form-control" id="txt_con2" placeholder="Repite la contrase&ntilde;a"><br>
-                </div>
-                <div class="col-lg-12">
-                    <label for="">Sexo</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_sexo" style="width:100%;">
-                        <option value="M">MASCULINO</option>
-                        <option value="F">FEMENINO</option>
+                    <label for="">Estado</label>
+                    <select class="js-example-basic-single" name="state" id="cbm_estatus" style="width:100%;">
+                        <option value="ACTIVO">ACTIVO</option>
+                        <option value="INACTIVO">INACTIVO</option>
                     </select><br><br>
                 </div>
-                <div class="col-lg-12">
-                    <label for="">Tipo de Rol</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_rol" style="width:100%;">
-                      <option value="A">ADMINISTRADOR</option>
-                      <option value="I">INVITADO</option>
-                    </select><br><br>
-                </div>
-
             </div>
             <div class="modal-footer">
               <!-- botones registro/cancelar -->
@@ -99,53 +76,6 @@
         </div>
         </div>
     </div>
-</form>
-<!-- modal editar -->
-<form autocomplete="false" onsubmit="return false">
-    <div class="modal fade" id="modal_editar" role="dialog">
-        <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><b>Editar datos de  Usuario</b></h4>
-            </div>
-            <div class="modal-body">
-                <div class="col-lg-12">
-                  <input type="text" id="txtidusuario" hidden>
-                    <label for="">Usuario</label>
-                    <input type="text" class="form-control" id="txtusu_editar" placeholder="Ingresa el usuario" disabled><br>
-                </div>
-                <div class="col-lg-12">
-                    <label for="">Email</label>
-                    <input type="text" class="form-control" id="txt_email_editar" placeholder="Ingresa el email"><br>
-                    <label for="" id="emailOK_editar" style="color:red"></label>
-                    <input type="text" id="validar_email_editar" hidden>
-                </div>
-                <div class="col-lg-12">
-                    <label for="">Sexo</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_sexo_editar" style="width:100%;">
-                        <option value="M">MASCULINO</option>
-                        <option value="F">FEMENINO</option>
-                    </select><br><br>
-                </div>
-                <div class="col-lg-12">
-                    <label for="">Tipo de Rol</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_rol_editar" style="width:100%;">
-                      <option value="A">ADMINISTRADOR</option>
-                      <option value="I">INVITADO</option>
-                    </select><br><br>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-              <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Modificar_Usuario()"><i class="fa fa-check"><b>&nbsp;Modificar</b></i></button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
-            </div>
-        </div>
-        </div>
-    </div>
-</form>
 <script>
 $(document).ready(function() {
     listar_procedimiento(); 

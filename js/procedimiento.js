@@ -1,6 +1,5 @@
-var table;
 function listar_procedimiento(){
-     table = $("#tabla_procedimiento").DataTable({
+  var tableprocedimiento = $("#tabla_procedimiento").DataTable({
        "ordering":false,
        "bLengthChange":false,
        // agilizar datos
@@ -16,6 +15,7 @@ function listar_procedimiento(){
            type:'POST'
        },
        // para el controlador_usuario_listar llama a sus datos
+        "order":[[1,'asc']],
        "columns":[
            {"defaultContent":""},
            {"data":"procedimiento_nombre"},
@@ -29,7 +29,7 @@ function listar_procedimiento(){
             }
           }
         },
-           {"defaultContent":"<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='desactivar btn btn-danger'><i class='fa fa-trash'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='activar btn btn-success'><i class='fa fa-check'></i></button>"}
+           {"defaultContent":"<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"}
        ],
        "language":idioma_espanol,
        select: true
@@ -41,4 +41,10 @@ function listar_procedimiento(){
     $('input.column_filter').on( 'keyup click', function () {
         filterColumn( $(this).parents('tr').attr('data-column') );
     });
+    tableprocedimiento.on( 'draw.dt', function () {
+        var PageInfo = $('#tabla_procedimiento').DataTable().page.info();
+        tableprocedimiento.column(0, { page: 'current' }).nodes().each( function (cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            } );
+        } );
 }
