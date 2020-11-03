@@ -148,6 +148,7 @@
 </form>
 <script>
 $(document).ready(function() {
+    listar_procedimiento(); 
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){
         $("#txt_usu").focus();
