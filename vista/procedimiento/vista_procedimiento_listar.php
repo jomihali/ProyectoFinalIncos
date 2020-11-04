@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-lg-2">
                   <!-- boton nuevo registro de usuario -->
-                    <button class="btn btn-danger" style="width:100%" onclick="AbrirModalRegistro()"><i class="glyphicon glyphicon-plus"></i>Registrar</button>
+                    <button class="btn btn-danger" style="width:100%" onclick="AbrirModalRegistro()"><i class="glyphicon glyphicon-plus"></i>Nuevo Registro</button>
                 </div>
             </div>
             <!-- datos de mi tabla -->
@@ -52,13 +52,13 @@
         <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><b>Registrar Servicio</b></h4>
+            <button type="button" class="close" data-dismiss="modal" >&times;</button>
+            <h4 class="modal-title"><b>Registro de procedimiento</b></h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
                     <label for="">Nombre</label>
-                    <input type="text" class="form-control" id="txt_prodecimiento" placeholder="Ingresa el procedimiento"><br>
+                    <input type="text" class="form-control" id="txt_prodecimiento" placeholder="Ingresa un procedimiento"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
@@ -70,7 +70,7 @@
             </div>
             <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Registrar_Usuario()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
+                <button class="btn btn-primary" onclick="Registro_Procedimiento()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
@@ -81,7 +81,7 @@ $(document).ready(function() {
     listar_procedimiento(); 
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){
-        $("#txt_usu").focus();
+        $("#txt_procedimiento").focus();
     })
 } );
 $('.box').boxWidget({

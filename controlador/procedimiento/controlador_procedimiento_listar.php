@@ -1,5 +1,4 @@
 <?php
-//
     require '../../modelo/modelo_procedimiento.php';
     $MU = new Modelo_Procedimiento();//instanciamos
     $consulta = $MU->listar_procedimiento();
