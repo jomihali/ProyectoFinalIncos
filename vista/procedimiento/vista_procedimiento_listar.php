@@ -76,6 +76,37 @@
         </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal_editar" role="dialog">
+        <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" >&times;</button>
+            <h4 class="modal-title"><b>Modificar procedimiento</b></h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-lg-12">
+                    <label for="">Nombre</label>
+                    <input type="text" id="txt_idprocedimiento" hidden >
+                    <input type="text" id="txt_procedimiento_actual_editar" placeholder="Ingresa un procedimiento" hidden>
+                    <input type="text" class="form-control" id="txt_procedimiento_nuevo_editar" placeholder="Ingresa un procedimiento"><br>
+                </div>
+                <div class="col-lg-12">
+                    <label for="">Estado</label>
+                    <select class="js-example-basic-single" name="state" id="cbm_estatus_editar" style="width:100%;">
+                        <option value="ACTIVO">ACTIVO</option>
+                        <option value="INACTIVO">INACTIVO</option>
+                    </select><br><br>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <!-- botones registro/cancelar -->
+                <button class="btn btn-primary" onclick="Modificar_Procedimiento()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
+            </div>
+        </div>
+        </div>
+    </div>
 <script>
 $(document).ready(function() {
     listar_procedimiento(); 
