@@ -19,8 +19,8 @@
 			}
         }
 
-        function Registrar_Procedimiento($procedimiento,$estatus){
-            $sql = "call SP_REGISTRAR_PROCEDIMIENTO('$procedimiento','$estatus')";
+        function Registrar_Servicio($servicio,$estatus){
+            $sql = "call SP_REGISTRAR_SERVICIO('$servicio','$estatus')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);

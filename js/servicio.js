@@ -52,7 +52,43 @@ function listar_servicio(){
           } );
   }
 
+  function filterGlobal() {
+    $('#tabla_servicio').DataTable().search(
+        $('#global_filter').val(),
+    ).draw();
+}
+
 function AbrirModalRegistro(){
   $("#modal_registro").modal({backdrop:'static',keyboard:false})
   $("#modal_registro").modal('show');
+}
+
+function Registrar_Servicio(){
+    var servicio = $("#txt_servicio").val();
+    var estatus = $("#cbm_estatus").val();
+    if(servicio.length==0||estatus.length==0){
+        Swal.fire("Mensaje de advertencia","El campo servicio debe tener datos","warning");
+    }
+    $.ajax({
+        url:'../controlador/servicio/controlador_servicio_registro.php',
+        type:'post',
+        data:{
+            se:servicio,
+            e:estatus
+        }
+    }).done(function(resp){
+         if(resp>0){
+            if(resp==1){
+                $("#modal_registro").modal('hide');
+                listar_servicio();
+              Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Servicio registrado","success");
+            }else{
+                Swal.fire("Mensaje de Advertencia","El servicio ya está existe","warning");
+            }
+        } 
+    })
+
+  function LimpiarCampos(){
+      $("#txt_servicio").val("");
+  }
 }
