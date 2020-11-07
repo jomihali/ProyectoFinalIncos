@@ -51,7 +51,7 @@ function listar_servicio(){
               } );
           } );
   }
-
+//buscar
   function filterGlobal() {
     $('#tabla_servicio').DataTable().search(
         $('#global_filter').val(),
@@ -88,7 +88,53 @@ function Registrar_Servicio(){
         } 
     })
 
-  function LimpiarCampos(){
-      $("#txt_servicio").val("");
-  }
 }
+
+function Modificar_Servicio(){
+    var id = $("#txtidservicio").val();
+    var servicioactual = $("#txt_servicio_actual_editar").val();
+    var servicionuevo = $("#txt_servicio_nuevo_editar").val();
+    var estatus = $("#cbm_estatus_editar").val();
+    if(servicioactual.length==0||servicionuevo.length==0||estatus.length==0){
+        Swal.fire("Mensaje de advertencia","El campo servicio debe tener datos","warning");
+    }
+    $.ajax({
+        url:'../controlador/servicio/controlador_servicio_modificar.php',
+        type:'post',
+        data:{
+            id:id,
+            seac:servicioactual,
+            senu:servicionuevo,
+            es:estatus
+        }
+    }).done(function(resp){
+         if(resp>0){
+            if(resp==1){
+                $("#modal_registro").modal('hide');
+                listar_servicio();
+              Swal.fire("Mensaje de Confirmacion","Datos actualizados correctamente","success");
+            }else{
+                Swal.fire("Mensaje de Advertencia","El servicio ya está existe","warning");
+            }
+        } 
+    })
+
+}
+
+function LimpiarCampos(){
+    $("#txt_servicio").val("");
+}
+
+// alerta de editar!
+$('#tabla_servicio').on('click','.editar',function(){
+    var data = tableservicio.row($(this).parents('tr')).data();
+    if(tableservicio.row(this).child.isShown()){
+        var data = tableservicio.row(this).data();
+    }
+    $("#modal_editar").modal({backdrop:'static',keyboard:false})
+    $("#modal_editar").modal('show');
+    $("#txtidservicio").val(data.servicio_id);
+    $("#txt_servicio_actual_editar").val(data.servicio_nombre);
+    $("#txt_servicio_nuevo_editar").val(data.servicio_nombre);
+    $("#cbm_estatus_editar").val(data.servicio_estatus).trigger("change");
+})

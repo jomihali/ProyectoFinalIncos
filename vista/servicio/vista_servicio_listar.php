@@ -58,7 +58,7 @@
             <div class="modal-body">
                 <div class="col-lg-12">
                     <label for="">Nombre</label>
-                    <input type="text" class="form-control" id="txt_servicio" placeholder="Ingresa un servicio"><br>
+                    <input type="text" class="form-control" id="txt_servicio" placeholder="Ingresa un servicio" maxlength="50" onkeypress="return"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
@@ -82,14 +82,14 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Modificar Servicio</b></h4>
+            <h4 class="modal-title"><b>Editar Servicio</b></h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
+                    <input type="text" id="txtidservicio" hidden>
                     <label for="">Nombre</label>
-                    <input type="text" id="txt_idprocedimiento" hidden >
-                    <input type="text" id="txt_procedimiento_actual_editar" placeholder="Ingresa un procedimiento" hidden>
-                    <input type="text" class="form-control" id="txt_procedimiento_nuevo_editar" placeholder="Ingresa un procedimiento"><br>
+                    <input type="text" id="txt_servicio_actual_editar"  hidden><br>
+                    <input type="text" class="form-control" id="txt_servicio_nuevo_editar"placeholder="Ingresa un servicio" maxlength="50">
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
@@ -101,12 +101,13 @@
             </div>
             <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Modificar_Procedimiento()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
+                <button class="btn btn-primary" onclick="Modificar_Servicio()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
         </div>
     </div>
+
 <script>
 $(document).ready(function() {
     listar_servicio(); 
