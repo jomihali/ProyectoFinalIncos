@@ -19,8 +19,8 @@
 			}
         }
 
-        function Registrar_Servicio($servicio,$estatus){
-            $sql = "call SP_REGISTRAR_SERVICIO('$servicio','$estatus')";
+        function Registrar_Especialidad($especialidad,$estatus){
+            $sql = "call SP_REGISTRAR_ESPECIALIDAD('$especialidad','$estatus')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);

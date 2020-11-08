@@ -53,12 +53,12 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Registro de procedimiento</b></h4>
+            <h4 class="modal-title"><b>Registro de Especialidad</b></h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
                     <label for="">Nombre</label>
-                    <input type="text" class="form-control" id="txt_prodecimiento" placeholder="Ingresa un procedimiento"><br>
+                    <input type="text" class="form-control" id="txt_especialidad" placeholder="Ingresa una especialidad"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
@@ -70,7 +70,7 @@
             </div>
             <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Registro_Procedimiento()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
+                <button class="btn btn-primary" onclick="Registrar_Especialidad()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
@@ -82,7 +82,7 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Modificar procedimiento</b></h4>
+            <h4 class="modal-title"><b>Modificar Especialidad</b></h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
@@ -112,7 +112,7 @@ $(document).ready(function() {
     listar_especialidad(); 
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){
-        $("#txt_procedimiento").focus();
+        $("#txt_especialidad").focus();
     })
 } );
 $('.box').boxWidget({

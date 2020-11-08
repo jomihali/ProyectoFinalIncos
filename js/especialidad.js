@@ -55,3 +55,39 @@ function filterGlobal() {
         $('#global_filter').val(),
     ).draw();
 }
+
+function AbrirModalRegistro(){
+    $("#modal_registro").modal({backdrop:'static',keyboard:false})
+    $("#modal_registro").modal('show');
+  }
+
+  function Registrar_Especialidad(){
+    var especialidad = $("#txt_especialidad").val();
+    var estatus = $("#cbm_estatus").val();
+    if(especialidad.length==0){
+        Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
+    }
+    $.ajax({
+        url:'../controlador/especialidad/controlador_especialidad_registro.php',
+        type:'post',
+        data:{
+            especialidad:especialidad,
+            estatus:estatus
+        }
+    }).done(function(resp){
+        if(resp>0){
+            if(resp==1){
+                $("#modal_registro").modal('hide');
+                listar_especialidad();
+              Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Especialidad registrada","success");
+            }else{
+                LimpiarCampos();
+                Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
+            }
+        }
+    })
+}
+
+function LimpiarCampos(){
+    $("#txt_especialidad").val();
+}
