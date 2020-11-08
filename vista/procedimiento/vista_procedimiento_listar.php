@@ -29,7 +29,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nombre</th>
+                        <th>Procedimiento</th>
                         <th>Fecha registro</th>
                         <th>Estado</th>
                         <th>Acci&oacute;n</th>
@@ -38,7 +38,7 @@
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>Nombre</th>
+                        <th>Procedimiento</th>
                         <th>Fecha registro</th>
                         <th>Estado</th>
                         <th>Acci&oacute;n</th>

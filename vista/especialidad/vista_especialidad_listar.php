@@ -1,9 +1,9 @@
 <!-- importar el js usuario -->
-<script type="text/javascript" src="../js/servicio.js?rev=<?php echo time();?>"></script>
+<script type="text/javascript" src="../js/especialidad.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
     <div class="box box-warning box-solid">
         <div class="box-header with-border">
-              <h3 class="box-title">MANTENIMIENTO DE SERVICIO</h3>
+              <h3 class="box-title">MANTENIMIENTO DE ESPECIALIDADES</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -25,11 +25,11 @@
                 </div>
             </div>
             <!-- datos de mi tabla -->
-            <table id="tabla_servicio" class="display responsive nowrap" style="width:100%">
+            <table id="tabla_especialidad" class="display responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Servicio</th>
+                        <th>Especialidad</th>
                         <th>Fecha registro</th>
                         <th>Estado</th>
                         <th>Acci&oacute;n</th>
@@ -38,7 +38,7 @@
                 <tfoot>
                     <tr>
                         <th>#</th>
-                        <th>Servicio</th>
+                        <th>Especialidad</th>
                         <th>Fecha registro</th>
                         <th>Estado</th>
                         <th>Acci&oacute;n</th>
@@ -53,12 +53,12 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Registro de Servicio</b></h4>
+            <h4 class="modal-title"><b>Registro de procedimiento</b></h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
                     <label for="">Nombre</label>
-                    <input type="text" class="form-control" id="txt_servicio" placeholder="Ingresa un servicio" maxlength="50" onkeypress="return"><br>
+                    <input type="text" class="form-control" id="txt_prodecimiento" placeholder="Ingresa un procedimiento"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
@@ -70,7 +70,7 @@
             </div>
             <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Registrar_Servicio()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
+                <button class="btn btn-primary" onclick="Registro_Procedimiento()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
@@ -82,14 +82,14 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Editar Servicio</b></h4>
+            <h4 class="modal-title"><b>Modificar procedimiento</b></h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
-                    <input type="text" id="txtidservicio" hidden>
                     <label for="">Nombre</label>
-                    <input type="text" id="txt_servicio_actual_editar"  hidden><br>
-                    <input type="text" class="form-control" id="txt_servicio_nuevo_editar"placeholder="Ingresa un servicio" maxlength="50">
+                    <input type="text" id="txt_idprocedimiento" hidden >
+                    <input type="text" id="txt_procedimiento_actual_editar" placeholder="Ingresa un procedimiento" hidden>
+                    <input type="text" class="form-control" id="txt_procedimiento_nuevo_editar" placeholder="Ingresa un procedimiento"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
@@ -101,19 +101,18 @@
             </div>
             <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Modificar_Servicio()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
+                <button class="btn btn-primary" onclick="Modificar_Procedimiento()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
         </div>
     </div>
-
 <script>
 $(document).ready(function() {
-    listar_servicio(); 
+    listar_especialidad(); 
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){
-        $("#txt_servicio").focus();
+        $("#txt_procedimiento").focus();
     })
 } );
 $('.box').boxWidget({
