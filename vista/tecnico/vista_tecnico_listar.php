@@ -1,9 +1,9 @@
 <!-- importar el js usuario -->
-<script type="text/javascript" src="../js/especialidad.js?rev=<?php echo time();?>"></script>
+<script type="text/javascript" src="../js/tecnico.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
     <div class="box box-warning box-solid">
         <div class="box-header with-border">
-              <h3 class="box-title">MANTENIMIENTO DE ESPECIALIDADES</h3>
+              <h3 class="box-title">MANTENIMIENTO DE TECNICO</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -25,22 +25,24 @@
                 </div>
             </div>
             <!-- datos de mi tabla -->
-            <table id="tabla_especialidad" class="display responsive nowrap" style="width:100%">
+            <table id="tabla_tecnico" class="display responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Nro documento</th>
+                        <th>Nombre</th>
                         <th>Especialidad</th>
-                        <th>Fecha registro</th>
-                        <th>Estado</th>
+                        <th>Celular</th>
                         <th>Acci&oacute;n</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>#</th>
+                        <th>Nro documento</th>
+                        <th>Nombre</th>
                         <th>Especialidad</th>
-                        <th>Fecha registro</th>
-                        <th>Estado</th>
+                        <th>Celular</th>
                         <th>Acci&oacute;n</th>
                     </tr>
                 </tfoot>
@@ -109,7 +111,7 @@
 
 <script>
 $(document).ready(function() {
-    listar_especialidad(); 
+    listar_tecnico(); 
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){
         $("#txt_especialidad").focus();

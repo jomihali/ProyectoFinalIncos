@@ -1,5 +1,5 @@
 <?php
-    class Modelo_Especialidad{
+    class Modelo_Tecnico{
 
         private $conexion;
         function __construct(){
@@ -7,8 +7,8 @@
             $this->conexion = new conexion();
             $this->conexion->conectar();
         }
-        function listar_especialidad(){
-            $sql = "call SP_LISTAR_ESPECIALIDAD()";
+        function listar_tecnico(){
+            $sql = "call SP_LISTAR_TECNICO()";
 			$arreglo = array();
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				while ($consulta_VU = mysqli_fetch_assoc($consulta)) {
@@ -19,8 +19,8 @@
 			}
         }
 
-        function Registrar_Especialidad($especialidad,$estatus){
-            $sql = "call SP_REGISTRAR_ESPECIALIDAD('$especialidad','$estatus')";
+        function Registrar_Procedimiento($procedimiento,$estatus){
+            $sql = "call SP_REGISTRAR_PROCEDIMIENTO('$procedimiento','$estatus')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);
@@ -29,8 +29,8 @@
 			}
         }
       
-        function Modificar_Especialidad($id,$especialidadactual,$especialidadnueva,$estatus){
-            $sql = "call SP_MODIFICAR_ESPECIALIDAD('$id','$especialidadactual','$especialidadnueva','$estatus')";
+        function Modificar_Procedimiento($id,$procedimientoactual,$procedimientonuevo,$estatus){
+            $sql = "call SP_MODIFICAR_PROCEDIMIENTO('$id','$procedimientoactual','$procedimientonuevo','$estatus')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);

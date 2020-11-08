@@ -88,6 +88,51 @@ function AbrirModalRegistro(){
     })
 }
 
+
+$('#tabla_especialidad').on('click','.editar',function(){
+    var data = tableespecialidad.row($(this).parents('tr')).data();//detecta a que fila hago click y enseña los datos de esa variable
+    if(tableespecialidad.row(this).child.isShown()){//lo mismo en responsive
+        var data = tableespecialidad.row(this).data();
+    }
+    $("#modal_editar").modal({backdrop:'static',keyboard:false})
+    $("#modal_editar").modal('show');
+    $("#id_especialidad").val(data.especialidad_id);
+    $("#txt_especialidad_actual_editar").val(data.especialidad_nombre);
+    $("#txt_especialidad_nueva_editar").val(data.especialidad_nombre);
+    $("#cbm_estatus_editar").val(data.especialidad_estatus).trigger("change");
+})
+
+function Editar_Especialidad(){
+    var id = $("#id_especialidad").val();
+    var especialidadactual = $("#txt_especialidad_actual_editar").val();
+    var especialidadnueva = $("#txt_especialidad_nueva_editar").val();
+    var estatus = $("#cbm_estatus_editar").val();
+    if(especialidadactual.length==0 ||especialidadnueva.length==0 ||estatus.length==0){
+        Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
+    }
+    $.ajax({
+        url:'../controlador/especialidad/controlador_especialidad_modificar.php',
+        type:'post',
+        data:{
+            id:id,
+            espeac:especialidadactual,
+            espenu:especialidadnueva,
+            estatus:estatus
+        }
+    }).done(function(resp){
+        alert(resp);
+        if(resp>0){
+            if(resp==1){
+                $("#modal_editar").modal('hide');
+                listar_especialidad();
+              Swal.fire("Mensaje de Confirmacion","Datos actualizados correctamente","success");
+            }else{
+                Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
+            }
+        }
+    })
+}
+
 function LimpiarCampos(){
     $("#txt_especialidad").val();
 }

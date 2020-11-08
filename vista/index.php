@@ -270,6 +270,12 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
+        <a onclick="cargar_contenido('contenido_principal','tecnico/vista_tecnico_listar.php')">
+            <i class="fa fa-user-md"></i> <span>Tecnico</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
           <a onclick="cargar_contenido('contenido_principal','usuario/vista_usuario_listar.php')">
             <i class="fa fa-users"></i> <span>Usuario</span>
             <span class="pull-right-container">
