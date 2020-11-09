@@ -8,7 +8,7 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8"> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title> INICIO </title>
   <!-- Tell the browser to be responsive to screen width -->

@@ -52,6 +52,7 @@ function filterGlobal() {
 function AbrirModalRegistro(){
     $("#modal_registro").modal({backdrop:'static',keyboard:false})
     $("#modal_registro").modal('show');
+    listar_combo_rol();
   }
 
   $('#tabla_tecnico').on('click','.editar',function(){
@@ -65,8 +66,28 @@ function AbrirModalRegistro(){
     $("#txt_especialidad_actual_editar").val(data.especialidad_nombre);
     $("#txt_especialidad_nueva_editar").val(data.especialidad_nombre);
     $("#cbm_estatus_editar").val(data.especialidad_estatus).trigger("change");
+
 })
 
 function LimpiarCampos(){
     $("#txt_especialidad").val();
+}
+//combo de rol
+function listar_combo_rol(){
+    $.ajax({
+        "url":"../controlador/usuario/controlador_combo_rol_listar.php",
+        type:'POST'
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        var cadena="";
+        if(data.length>0){
+            for(var i=0; i < data.length; i++){
+                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+            }
+            $("#cbm_rol").html(cadena);
+        }else{
+            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
+            $("#cbm_rol").html(cadena);
+        }
+    })
 }

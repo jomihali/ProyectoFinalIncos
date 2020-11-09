@@ -51,58 +51,79 @@
     </div>
 </div>
     <div class="modal fade" id="modal_registro" role="dialog">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Registro de Especialidad</b></h4>
+            <h4 class="modal-title"><b>Registro de Tecnico</b></h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
-                    <label for="">Nombre</label>
-                    <input type="text" class="form-control" id="txt_especialidad" placeholder="Ingresa una especialidad"><br>
+                    <label for="">Nombres</label>
+                    <input type="text" class="form-control" id="txt_nombres" placeholder="Ingresa nombres"><br>
+                </div>
+                  <div class="col-lg-6">
+                    <label for="">Apellido paterno</label>
+                    <input type="text" class="form-control" id="txt_apepat" placeholder="Apellido paterno"><br>
+                </div>
+                <div class="col-lg-6">
+                    <label for="">Apellido materno</label>
+                    <input type="text" class="form-control" id="txt_apemat" placeholder="Apellido materno"><br>
                 </div>
                 <div class="col-lg-12">
-                    <label for="">Estado</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_estatus" style="width:100%;">
-                        <option value="ACTIVO">ACTIVO</option>
-                        <option value="INACTIVO">INACTIVO</option>
+                    <label for="">Direccion</label>
+                    <input type="text" class="form-control" id="txt_direccion" placeholder="Ingresa direccion"><br>
+                </div>
+                <div class="col-lg-4">
+                    <label for="">Sexo</label>
+                    <select class="js-example-basic-single" name="state" id="cbm_sexo" style="width:100%;">
+                        <option value="F">Femenino</option>
+                        <option value="M">Masculino</option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <label for="">Fecha Nacimiento</label>
+                    <input type="date" class="form-control" id="txt_fenac"><br>
+                </div>
+                <div class="col-lg-4">
+                    <label for="">Movil</label>
+                    <input type="text" class="form-control" id="txt_movil" placeholder="Ingresar movil"><br>
+                </div>
+                <div class="col-lg-6">
+                    <label for="">N documento</label>
+                    <input type="text" class="form-control" id="txt_ndoc" placeholder="Numero de documento"><br>
+                </div>
+                <div class="col-lg-6">
+                    <label for="">Especialidad</label>
+                    <select class="js-example-basic-single" name="state" id="cbm_especialidad" style="width:100%;">
                     </select><br><br>
                 </div>
+                <div class="col-lg-12" style="text-align:center">
+                    <b> DATOS DE USUARIO</b><br><br>
+                    </select><br><br>
+                </div>
+                <div class="col-lg-4">
+                    <label for="">Usuario</label>
+                    <input type="text" class="form-control" id="txt_usu" placeholder="Ingresar usuario"><br>
+                </div>
+                <div class="col-lg-4">
+                    <label for="">Contrase&ntilde;a</label>
+                    <<input type="text" class="form-control" id="txt_contra" placeholder="Ingresar contrase&ntilde;a"><br>
+                </div>
+                <div class="col-lg-4">
+                    <label for="">Rol</label>
+                    <select class="js-example-basic-single" name="state" id="cbm_rol" style="width:100%;">
+                    </select>
+                </div>
+                <div class="col-lg-12">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" id="txt_mail" placeholder="Ingresar email"><br>
+                </div
             </div>
-            <div class="modal-footer">
+               <div class="col-lg-12"></div>
+          <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Registrar_Especialidad()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modal_editar" role="dialog">
-        <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Editar Especialidad</b></h4>
-            </div>
-            <div class="modal-body">
-                <div class="col-lg-12">
-                     <input type="text" id="id_especialidad" hidden>
-                     <label for="">Nombre</label>
-                    <input type="text"  id="txt_especialidad_actual_editar" placeholder="Ingresa una especialidad" hidden>
-                    <input type="text" class="form-control" id="txt_especialidad_nueva_editar" placeholder="Ingresa una especialidad"><br>
-                </div>
-                <div class="col-lg-12">
-                    <label for="">Estado</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_estatus_editar" style="width:100%;">
-                        <option value="ACTIVO">ACTIVO</option>
-                        <option value="INACTIVO">INACTIVO</option>
-                    </select><br><br>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" onclick="Editar_Especialidad()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
+                <button class="btn btn-primary" onclick="Registro_Procedimiento()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
@@ -111,7 +132,7 @@
 
 <script>
 $(document).ready(function() {
-    listar_tecnico(); 
+    listar_tecnico();
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){
         $("#txt_especialidad").focus();
