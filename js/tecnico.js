@@ -1,4 +1,4 @@
-var tabletecnico;
+var tabletecnico; 
 function listar_tecnico(){
     tabletecnico = $("#tabla_tecnico").DataTable({
        "ordering":false,
@@ -63,11 +63,22 @@ function AbrirModalRegistro(){
     }
     $("#modal_editar").modal({backdrop:'static',keyboard:false})
     $("#modal_editar").modal('show');
-    $("#id_especialidad").val(data.especialidad_id);
-    $("#txt_especialidad_actual_editar").val(data.especialidad_nombre);
-    $("#txt_especialidad_nueva_editar").val(data.especialidad_nombre);
-    $("#cbm_estatus_editar").val(data.especialidad_estatus).trigger("change");
-
+    $("#id_tecnico").val(data.tecnico_id);
+    $("#txt_nombres_editar").val(data.tecnico_nombre);
+    $("#txt_apepat_editar").val(data.tecnico_apepat);
+    $("#txt_apemat_editar").val(data.tecnico_apemat);
+    $("#txt_direccion_editar").val(data.tecnico_direccion);
+    $("#txt_movil_editar").val(data.tecnico_movil);
+    $("#cbm_sexo_editar").val(data.tecnico_sexo).trigger("change");
+    $("#txt_fenac_editar").val(data.tecnico_fenac);
+    $("#txt_ndoc_editar_actual").val(data.tecnico_nrodocumento);
+    $("#txt_ndoc_editar_nuevo").val(data.tecnico_nrodocumento);
+    $("#cbm_especialidad_editar").val(data.especialidad_id).trigger("change");
+    //datosu usuario
+    $("#id_usuario").val(data.usu_id);
+    $("#txt_usu_editar").val(data.usu_nombre);
+    $("#cbm_rol_editar").val(data.rol_id).trigger("change");
+    $("#txt_email_editar").val(data.usu_email);
 })
 
 function LimpiarCampos(){
@@ -83,12 +94,17 @@ function listar_combo_rol(){
         var cadena="";
         if(data.length>0){
             for(var i=0; i < data.length; i++){
-                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                if(data[i][0]==3){
+                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
+                }
+                
             }
             $("#cbm_rol").html(cadena);
+            $("#cbm_rol_editar").html(cadena);
         }else{
             cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
             $("#cbm_rol").html(cadena);
+            $("#cbm_rol_editar").html(cadena);
         }
     })
 }
@@ -109,15 +125,17 @@ function listar_combo_especialidad(){
                 cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
             }
             $("#cbm_especialidad").html(cadena);
+            $("#cbm_especialidad_editar").html(cadena);
         }else{
             cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
             $("#cbm_especialidad").html(cadena);
+            $("#cbm_especialidad_editar").html(cadena);
         }
     })
 }
 
 function Registrar_Tecnico(){
-  var nombres =$("#txt_nombres").val();
+  var nombre =$("#txt_nombres").val();
   var apepat =$("#txt_apepat").val();
   var apemat =$("#txt_apemat").val();
   var direccion =$("#txt_direccion").val();
@@ -130,15 +148,18 @@ function Registrar_Tecnico(){
   var contra =$("#txt_contra").val();
   var rol =$("#cbm_rol").val();
   var email =$("#txt_email").val();
+  var validaremail =$("#validar_email").val();
+  if(validaremail="incorrecto"){
+      return Swal.fire("Mensaje de advertencia","El email ingresado no tiene el formato correcto","warning");
+  }
    if(nombre.length==0||apepat.length==0||apemat.length==0||direccion.length==0||movil.length==0||sexo.length==0||fenac.length==0||nrodocumento.length==0||especialidad.length==0||usu.length==0||contra.length==0||rol.length==0||email.length==0){
-     return Swal.fire("Mensaje de advertencia","Los datos no pueden estar vacios","warning");
+     return Swal.fire("Mensaje de Advertencia","Llene todos los campos","warning");
    }
-
-   $ajax({
+   $.ajax({
      "url":"../controlador/tecnico/controlador_tecnico_registro.php",
      type:'POST',
      data:{
-       nombres:nombres,
+       nombre:nombre,
        apepat:apepat,
        apemat:apemat,
        direccion:direccion,
@@ -156,3 +177,49 @@ function Registrar_Tecnico(){
      alert(resp);
    })
 }
+
+function Editar_Tecnico(){
+    var idtecnico=$("#id_usuario").val();
+
+    var nombre =$("#txt_nombres_editar").val();
+    var apepat =$("#txt_apepat_editar").val();
+    var apemat =$("#txt_apemat_editar").val();
+    var direccion =$("#txt_direccion_editar").val();
+    var movil =$("#txt_movil_editar").val();
+    var sexo =$("#cbm_sexo_editar").val();
+    var fenac =$("#txt_fe nac_editar").val();
+    var nrodocumentoactual =$("#txt_ndoc_editar_actual").val();
+    var nrodocumentonuevo =$("#txt_ndoc_editar_nuevo").val();
+    var especialidad =$("#cbm_especialidad_editar").val();
+    var idusuario=$("#id_usuario").val();
+    var email =$("#txt_email_editar").val();
+    var validaremail =$("#validar_email_editar").val();
+    if(validaremail=="incorrecto"){
+        return Swal.fire("Mensaje de advertencia","El email ingresado no tiene el formato correcto","warning");
+    }
+     if(nombre.length==0||apepat.length==0||apemat.length==0||direccion.length==0||movil.length==0||sexo.length==0||fenac.length==0||nrodocumentonuevo.length==0||especialidad.length==0||email.length==0){
+       return Swal.fire("Mensaje de Advertencia","Llene todos los campos","warning");
+     }
+     $.ajax({
+       "url":"../controlador/tecnico/controlador_tecnico_modificar.php",
+       type:'POST',
+       data:{
+         idtecnico:idtecnico,
+         nombre:nombre,
+         apepat:apepat,
+         apemat:apemat,
+         direccion:direccion,
+         movil:movil,
+         sexo:sexo,
+         fenac:fenac,
+         nrodocumentoactual:nrodocumentoactual,
+         nrodocumentonuevo:nrodocumentonuevo,
+         especialidad:especialidad,
+         idusuario:idusuario,
+         email:email
+       }
+     }).done(function(resp){
+       alert(resp);
+     })
+  }
+  
