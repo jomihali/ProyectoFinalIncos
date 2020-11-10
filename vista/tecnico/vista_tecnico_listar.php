@@ -58,6 +58,7 @@
             <h4 class="modal-title"><b>Registro de Tecnico</b></h4>
             </div>
             <div class="modal-body">
+              <div class="row">
                 <div class="col-lg-12">
                     <label for="">Nombres</label>
                     <input type="text" class="form-control" id="txt_nombres" placeholder="Ingresa nombres"><br>
@@ -108,7 +109,7 @@
                 </div>
                 <div class="col-lg-4">
                     <label for="">Contrase&ntilde;a</label>
-                    <<input type="text" class="form-control" id="txt_contra" placeholder="Ingresar contrase&ntilde;a"><br>
+                    <input type="password" class="form-control" id="txt_contra" placeholder="Ingresar contrase&ntilde;a"><br>
                 </div>
                 <div class="col-lg-4">
                     <label for="">Rol</label>
@@ -117,13 +118,16 @@
                 </div>
                 <div class="col-lg-12">
                     <label for="">Email</label>
-                    <input type="text" class="form-control" id="txt_mail" placeholder="Ingresar email"><br>
+                    <input type="text" class="form-control" id="txt_email" placeholder="Ingresar email"><br>
+                    <label for="" id="emailOK" style="color:red"></label>
+                    <input type="text" id="validar_email" hidden>
                 </div
             </div>
+          </div>
                <div class="col-lg-12"></div>
           <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Registro_Procedimiento()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
+                <button class="btn btn-primary" onclick="Registrar_Tecnico()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
@@ -135,9 +139,24 @@ $(document).ready(function() {
     listar_tecnico();
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){
-        $("#txt_especialidad").focus();
+        $("#txt_nombres").focus();
     })
 } );
+
+document.getElementById('txt_email').addEventListener('input',function(){
+  campo=event.target;
+  emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+  if(emailRegex.test(campo.value)){
+      $(this).css("border","");
+      $("#emailOK").html("");
+      $("#validar_email").val("correcto");
+  }else{
+    $(this).css("border","1px solid red");
+    $("#emailOK").html("Email incorrecto");
+    $("#validar_email").val("incorrecto");
+  }
+});
+
 $('.box').boxWidget({
     animationSpeed:500,
     collapseTrigger:'[data-widget="collapse"]',

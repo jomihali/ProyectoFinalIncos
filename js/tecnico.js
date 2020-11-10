@@ -53,6 +53,7 @@ function AbrirModalRegistro(){
     $("#modal_registro").modal({backdrop:'static',keyboard:false})
     $("#modal_registro").modal('show');
     listar_combo_rol();
+    listar_combo_especialidad();
   }
 
   $('#tabla_tecnico').on('click','.editar',function(){
@@ -90,4 +91,68 @@ function listar_combo_rol(){
             $("#cbm_rol").html(cadena);
         }
     })
+}
+
+function LimpiarCampos(){
+    $("#txt_especialidad").val();
+}
+//combo de rol
+function listar_combo_especialidad(){
+    $.ajax({
+        "url":"../controlador/tecnico/controlador_combo_especialidad_listar.php",
+        type:'POST'
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        var cadena="";
+        if(data.length>0){
+            for(var i=0; i < data.length; i++){
+                cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+            }
+            $("#cbm_especialidad").html(cadena);
+        }else{
+            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
+            $("#cbm_especialidad").html(cadena);
+        }
+    })
+}
+
+function Registrar_Tecnico(){
+  var nombres =$("#txt_nombres").val();
+  var apepat =$("#txt_apepat").val();
+  var apemat =$("#txt_apemat").val();
+  var direccion =$("#txt_direccion").val();
+  var movil =$("#txt_movil").val();
+  var sexo =$("#cbm_sexo").val();
+  var fenac =$("#txt_fenac").val();
+  var nrodocumento =$("#txt_ndoc").val();
+  var especialidad =$("#cbm_especialidad").val();
+  var usu =$("#txt_usu").val();
+  var contra =$("#txt_contra").val();
+  var rol =$("#cbm_rol").val();
+  var email =$("#txt_email").val();
+   if(nombre.length==0||apepat.length==0||apemat.length==0||direccion.length==0||movil.length==0||sexo.length==0||fenac.length==0||nrodocumento.length==0||especialidad.length==0||usu.length==0||contra.length==0||rol.length==0||email.length==0){
+     return Swal.fire("Mensaje de advertencia","Los datos no pueden estar vacios","warning");
+   }
+
+   $ajax({
+     "url":"../controlador/tecnico/controlador_tecnico_registro.php",
+     type:'POST',
+     data:{
+       nombres:nombres,
+       apepat:apepat,
+       apemat:apemat,
+       direccion:direccion,
+       movil:movil,
+       sexo:sexo,
+       fenac:fenac,
+       nrodocumento:nrodocumento,
+       especialidad:especialidad,
+       usu:usu,
+       contra:contra,
+       rol:rol,
+       email:email
+     }
+   }).done(function(resp){
+     alert(resp);
+   })
 }
