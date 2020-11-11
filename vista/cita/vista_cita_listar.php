@@ -63,18 +63,22 @@
                 <div class="col-lg-12">
                 <label for="">Cliente</label>
                     <select class="js-example-basic-single" name="state" id="cbm_cliente" style="width:100%;">
-                    </select>
+                    </select><br><br>
                </div>
                 <div class="col-lg-6">
                     <label for="">Especialidad</label>
                     <select class="js-example-basic-single" name="state" id="cbm_especialidad" style="width:100%;">
-                    </select>
+                    </select><br><br>
                 </div>
                 <div class="col-lg-6">
                     <label for="">Tecnico</label>
                     <select class="js-example-basic-single" name="state" id="cbm_tecnico" style="width:100%;">
-                    </select><br>
+                    </select><br><br>
                 </div>
+                <div class="col-lg-12">
+                <label for="">Descripcion problema</label>
+                  <textarea  id="txt_descripcion" rows="3" class="form-control" style="resize:none;"></textarea>
+                </div><br><br><br><br>
             </div>
             <div class="modal-footer">
               <!-- botones registro/cancelar -->
@@ -119,6 +123,11 @@
 $(document).ready(function() {
     listar_cita(); 
     listar_cliente_combo();
+    listar_especialidad_combo();
+    $("#cbm_especialidad").change(function() {
+        var idtecnico=$("#cbm_especialidad").val();
+        listar_tecnico_combo(idtecnico);
+    });
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){
         $("#txt_especialidad").focus();

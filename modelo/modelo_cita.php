@@ -31,6 +31,32 @@
 			}
         }
 
+        function listar_tecnico_combo($id){
+            $sql = "call SP_LISTAR_TECNICO_COMBO('$id')";
+			$arreglo = array();
+			if ($consulta = $this->conexion->conexion->query($sql)) {
+				while ($consulta_VU = mysqli_fetch_array($consulta)) {
+                    $arreglo[]=$consulta_VU;
+				}
+				return $arreglo;
+				$this->conexion->cerrar();
+			}
+        }
+
+        function listar_especialidad_combo(){
+            $sql = "call SP_LISTAR_ESPECIALIDAD_COMBO()";
+			$arreglo = array();
+			if ($consulta = $this->conexion->conexion->query($sql)) {
+				while ($consulta_VU = mysqli_fetch_array($consulta)) {
+                    $arreglo[]=$consulta_VU;
+				}
+				return $arreglo;
+				$this->conexion->cerrar();
+			}
+        }
+
+
+
         function Registrar_Especialidad($especialidad,$estatus){
             $sql = "call SP_REGISTRAR_ESPECIALIDAD('$especialidad','$estatus')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {

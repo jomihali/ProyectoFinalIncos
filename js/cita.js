@@ -77,8 +77,75 @@ function AbrirModalRegistro(){
     $("#modal_registro").modal('show');
   }
 
-  function Registrar_Cita(){
-    var especialidad = $("#txt_especialidad").val();
+
+
+function listar_cliente_combo(){
+    $.ajax({
+        "url":"../controlador/cita/controlador_combo_cliente_listar.php",
+        type:'POST'
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        var cadena="";
+        if(data.length>0){
+            for(var i=0; i < data.length; i++){
+                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
+            }
+            $("#cbm_cliente").html(cadena);
+            $("#cbm_cliente_editar").html(cadena);
+        }else{
+            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
+            $("#cbm_cliente").html(cadena);
+            $("#cbm_cliente_editar").html(cadena);
+        }
+    })
+}
+
+function listar_especialidad_combo(){
+    $.ajax({
+        "url":"../controlador/cita/controlador_combo_especialidad_listar.php",
+        type:'POST'
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        var cadena="";
+        if(data.length>0){
+            for(var i=0; i < data.length; i++){
+                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
+            }
+            $("#cbm_especialidad").html(cadena);
+            var id=$("#cbm_especialidad").val();
+            listar_tecnico_combo(id);
+        }else{
+            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
+            $("#cbm_especialidad").html(cadena);
+        }
+    })
+}
+
+function listar_tecnico_combo(id){
+    $.ajax({
+        "url":"../controlador/cita/controlador_combo_tecnico_listar.php",
+        type:'POST',
+        data:{
+           id:id
+        }
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        var cadena="";
+        if(data.length>0){
+            for(var i=0; i < data.length; i++){
+                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
+            }
+            $("#cbm_tecnico").html(cadena);
+        }else{
+            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
+            $("#cbm_tecnico").html(cadena);
+        }
+    })
+}
+function Registrar_Cita(){
+    var idcliente = $("#cbm_cliente").val();   
+    var iespecialidad = $("#txt_especialidad").val();
+    var tecnico = $("#txt_especialidad").val();
     var estatus = $("#cbm_estatus").val();
     if(especialidad.length==0){
        return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
@@ -100,54 +167,6 @@ function AbrirModalRegistro(){
                 LimpiarCampos();
                return Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
             }
-        }
-    })
-}
-
-function listar_cliente_combo(){
-    $.ajax({
-        "url":"../controlador/cita/controlador_combo_cliente_listar.php",
-        type:'POST'
-    }).done(function(resp){
-        var data = JSON.parse(resp);
-        var cadena="";
-        if(data.length>0){
-            for(var i=0; i < data.length; i++){
-                if(data[i][0]==3){
-                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
-                }
-                
-            }
-            $("#cbm_cliente").html(cadena);
-            $("#cbm_cliente_editar").html(cadena);
-        }else{
-            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
-            $("#cbm_cliente").html(cadena);
-            $("#cbm_cliente_editar").html(cadena);
-        }
-    })
-}
-
-function listar_especialidad_combo(){
-    $.ajax({
-        "url":"../controlador/cita/controlador_combo_especialidad_listar.php",
-        type:'POST'
-    }).done(function(resp){
-        var data = JSON.parse(resp);
-        var cadena="";
-        if(data.length>0){
-            for(var i=0; i < data.length; i++){
-                if(data[i][0]==3){
-                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
-                }
-                
-            }
-            $("#cbm_cliente").html(cadena);
-            $("#cbm_cliente_editar").html(cadena);
-        }else{
-            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
-            $("#cbm_cliente").html(cadena);
-            $("#cbm_cliente_editar").html(cadena);
         }
     })
 }

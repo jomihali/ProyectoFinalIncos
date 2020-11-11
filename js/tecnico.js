@@ -151,10 +151,7 @@ function Registrar_Tecnico(){
   var contra =$("#txt_contra").val();
   var rol =$("#cbm_rol").val();
   var email =$("#txt_email").val();
-  var validaremail =$("#validar_email").val();
-  if(validaremail="incorrecto"){
-      return Swal.fire("Mensaje de advertencia","El email ingresado no tiene el formato correcto","warning");
-  }
+
    if(nombre.length==0||apepat.length==0||apemat.length==0||direccion.length==0||movil.length==0||sexo.length==0||fenac.length==0||nrodocumento.length==0||especialidad.length==0||usu.length==0||contra.length==0||rol.length==0||email.length==0){
      return Swal.fire("Mensaje de Advertencia","Llene todos los campos","warning");
    }
@@ -195,10 +192,6 @@ function Editar_Tecnico(){
     var especialidad =$("#cbm_especialidad_editar").val();
     var idusuario=$("#id_usuario").val();
     var email =$("#txt_email_editar").val();
-    var validaremail =$("#validar_email_editar").val();
-    if(validaremail=="incorrecto"){
-        return Swal.fire("Mensaje de advertencia","El email ingresado no tiene el formato correcto","warning");
-    }
      if(nombre.length==0||apepat.length==0||apemat.length==0||direccion.length==0||movil.length==0||sexo.length==0||fenac.length==0||nrodocumentonuevo.length==0||especialidad.length==0||email.length==0){
        return Swal.fire("Mensaje de Advertencia","Llene todos los campos","warning");
      }
