@@ -7,6 +7,7 @@
             $this->conexion = new conexion();
             $this->conexion->conectar();
         }
+
         function listar_cliente(){
             $sql = "call SP_LISTAR_CLIENTE()";
 			$arreglo = array();
@@ -19,8 +20,8 @@
 			}
         }
 
-        function Registrar_Procedimiento($procedimiento,$estatus){
-            $sql = "call SP_REGISTRAR_PROCEDIMIENTO('$procedimiento','$estatus')";
+        function Registrar_CLiente($nombres,$apepat,$apemat,$direccion,$movil,$modelo,$nrodoc){
+            $sql = "call SP_REGISTRAR_CLIENTE('$nombres','$apepat','$apemat','$direccion','$movil','$modelo','$nrodoc')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);
@@ -29,8 +30,8 @@
 			}
         }
       
-        function Modificar_Procedimiento($id,$procedimientoactual,$procedimientonuevo,$estatus){
-            $sql = "call SP_MODIFICAR_PROCEDIMIENTO('$id','$procedimientoactual','$procedimientonuevo','$estatus')";
+        function Modificar_Cliente($id,$nombres,$apepat,$apemat,$direccion,$movil,$modelo,$ndoactual,$ndocnuevo,$estatus){
+            $sql = "call SP_MODIFICAR_CLIENTE('$id','$nombres','$apepat','$direccion','$movil','$modelo','$ndoactual','$ndocnuevo','$estatus')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);

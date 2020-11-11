@@ -65,7 +65,7 @@ function AbrirModalRegistro(){
     var especialidad = $("#txt_especialidad").val();
     var estatus = $("#cbm_estatus").val();
     if(especialidad.length==0){
-        Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
+       return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
     }
     $.ajax({
         url:'../controlador/especialidad/controlador_especialidad_registro.php',
@@ -79,10 +79,10 @@ function AbrirModalRegistro(){
             if(resp==1){
                 $("#modal_registro").modal('hide');
                 listar_especialidad();
-              Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Especialidad registrada","success");
+            return  Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Especialidad registrada","success");
             }else{
                 LimpiarCampos();
-                Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
+               return Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
             }
         }
     })
@@ -108,7 +108,7 @@ function Editar_Especialidad(){
     var especialidadnueva = $("#txt_especialidad_nueva_editar").val();
     var estatus = $("#cbm_estatus_editar").val();
     if(especialidadactual.length==0 ||especialidadnueva.length==0 ||estatus.length==0){
-        Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
+      return  Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
     }
     $.ajax({
         url:'../controlador/especialidad/controlador_especialidad_modificar.php',
@@ -125,9 +125,9 @@ function Editar_Especialidad(){
             if(resp==1){
                 $("#modal_editar").modal('hide');
                 listar_especialidad();
-              Swal.fire("Mensaje de Confirmacion","Datos actualizados correctamente","success");
+            return  Swal.fire("Mensaje de Confirmacion","Datos actualizados correctamente","success");
             }else{
-                Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
+              return  Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
             }
         }
     })

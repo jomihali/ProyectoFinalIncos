@@ -64,19 +64,19 @@
             </div>
             <div class="modal-body">
               <div class="row">
-              <div class="col-lg-6">
+              <div class="col-lg-12">
                     <label for="">N documento</label>
                     <input type="text" class="form-control" id="txt_ndoc" placeholder="Numero de documento"><br>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <label for="">Nombres</label>
                     <input type="text" class="form-control" id="txt_nombres" placeholder="Ingresa nombres"><br>
                 </div>
-                  <div class="col-lg-6">
+                  <div class="col-lg-12">
                     <label for="">Apellido paterno</label>
                     <input type="text" class="form-control" id="txt_apepat" placeholder="Apellido paterno"><br>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <label for="">Apellido materno</label>
                     <input type="text" class="form-control" id="txt_apemat" placeholder="Apellido materno"><br>
                 </div>
@@ -84,11 +84,11 @@
                     <label for="">Direccion</label>
                     <input type="text" class="form-control" id="txt_direccion" placeholder="Ingresa direccion"><br>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <label for="">Movil</label>
                     <input type="text" class="form-control" id="txt_movil" placeholder="Ingresa movil"><br>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                 <label for="">Modelo de Computadora</label>
                     <input type="text" class="form-control" id="txt_modelo" placeholder="Modelo de computadora"><br> 
                     </select>
@@ -97,7 +97,7 @@
           </div>
           <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Registrar_Tecnico()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
+                <button class="btn btn-primary" onclick="Registrar_Cliente()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
@@ -109,32 +109,62 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Modificar procedimiento</b></h4>
+            <h4 class="modal-title"><b>Modificar Cliente</b></h4>
             </div>
             <div class="modal-body">
-                <div class="col-lg-12">
-                    <label for="">Nombre</label>
-                    <input type="text" id="txt_idprocedimiento" hidden >
-                    <input type="text" id="txt_procedimiento_actual_editar" placeholder="Ingresa un procedimiento" hidden>
-                    <input type="text" class="form-control" id="txt_procedimiento_nuevo_editar" placeholder="Ingresa un procedimiento"><br>
+              <div class="row">
+              <input type="text" id="txt_idcliente" hidden>
+              <div class="col-lg-12">
+                    <label for="">N documento</label>
+                    <input type="text"  id="txt_ndoc_actual_editar" placeholder="Numero de documento" hidden>
+                    <input type="text" class="form-control" id="txt_ndoc_nuevo_editar" placeholder="Numero de documento">
                 </div>
                 <div class="col-lg-12">
-                    <label for="">Estado</label>
+                    <label for="">Nombres</label>
+                    <input type="text" class="form-control" id="txt_nombres_editar" placeholder="Ingresa nombres"><br>
+                </div>
+                  <div class="col-lg-12">
+                    <label for="">Apellido paterno</label>
+                    <input type="text" class="form-control" id="txt_apepat_editar" placeholder="Apellido paterno"><br>
+                </div>
+                <div class="col-lg-12">
+                    <label for="">Apellido materno</label>
+                    <input type="text" class="form-control" id="txt_apemat_editar" placeholder="Apellido materno"><br>
+                </div>
+                <div class="col-lg-12">
+                    <label for="">Direccion</label>
+                    <input type="text" class="form-control" id="txt_direccion_editar" placeholder="Ingresa direccion"><br>
+                </div>
+                <div class="col-lg-12">
+                    <label for="">Movil</label>
+                    <input type="text" class="form-control" id="txt_movil_editar" placeholder="Ingresa movil"><br>
+                </div>
+                <div class="col-lg-12">
+                <label for="">Modelo de Computadora</label>
+                    <input type="text" class="form-control" id="txt_modelo_editar" placeholder="Modelo de computadora"><br> 
+                    
+                </div>
+                <div class="col-lg-12">
+                <label for="">Estado</label>
                     <select class="js-example-basic-single" name="state" id="cbm_estatus_editar" style="width:100%;">
-                        <option value="ACTIVO">ACTIVO</option>
-                        <option value="INACTIVO">INACTIVO</option>
-                    </select><br><br>
+                      <option value="ACTIVO">ACTIVO</option>
+                      <option value="INACTIVO">INACTIVO</option>
+                    </select>
                 </div>
             </div>
-            <div class="modal-footer">
+          </div>
+          <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Modificar_Procedimiento()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
+                <button class="btn btn-primary" onclick="Modificar_Cliente()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
         </div>
     </div>
+
 <script>
+
+
 $(document).ready(function() {
     listar_cliente();
     $('.js-example-basic-single').select2();

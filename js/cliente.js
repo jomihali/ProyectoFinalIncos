@@ -65,19 +65,18 @@ function AbrirModalRegistro(){
 }
 
 function Registrar_Cliente(){
+    var nrodoc = $("#txt_ndoc").val();
     var nombres = $("#txt_nombres").val();
     var apepat = $("#txt_apepat").val();
     var apemat = $("#txt_apemat").val();
     var direccion = $("#txt_direccion").val();
     var movil = $("#txt_movil").val();
     var modelo = $("#txt_modelo").val();
-    var nrodoc = $("#txt_ndoc").val();
-    
-    if(nombres.length==0||apepat.length==0||apemat.length==0||direccion.length==0||movil.length==0||modelo.length==0||nrodoc.length==0){
-        Swal.fire("Mensaje de advertencia","Los campos no puedene estar vacios","warning");
+    if(nrodoc.length==0||nombres.length==0||apepat.length==0||apemat.length==0||direccion.length==0||movil.length==0||modelo.length==0){
+        return Swal.fire("Mensaje de advertencia","Los campos no puedene estar vacios","warning");
     }
     $.ajax({
-        url:'../controlador/tecnico/controlador_tecnico_registro.php',
+        url:'../controlador/cliente/controlador_cliente_registro.php',
         type:'post',
         data:{
             nombres:nombres,
@@ -92,7 +91,7 @@ function Registrar_Cliente(){
         if(resp>0){
             if(resp==1){
                 $("#modal_registro").modal('hide');
-                listar_procedimiento();
+                listar_cliente();
               Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Procedimiento registrado","success");
             }else{
                 Swal.fire("Mensaje de Advertencia","El Procedimiento ya está existe","warning");
@@ -108,42 +107,58 @@ $('#tabla_cliente').on('click','.editar',function(){
     }
     $("#modal_editar").modal({backdrop:'static',keyboard:false})
     $("#modal_editar").modal('show');
-    $("#txt_idprocedimiento").val(data.procedimiento_id);
-    $("#txt_procedimiento_actual_editar").val(data.procedimiento_nombre);
-    $("#txt_procedimiento_nuevo_editar").val(data.procedimiento_nombre);
-    $("#cbm_estatus_editar").val(data.procedimiento_estatus).trigger("change");
+    $("#txt_idcliente").val(data.cliente_id);
+    $("#txt_ndoc_actual_editar").val(data.cliente_nrodocumento);
+    $("#txt_ndoc_nuevo_editar").val(data.cliente_nrodocumento);
+    $("#txt_nombres_editar").val(data.cliente_nombre);
+    $("#txt_apepat_editar").val(data.cliente_apepat);
+    $("#txt_apemat_editar").val(data.cliente_apemat);
+    $("#txt_direccion_editar").val(data.cliente_direccion);
+    $("#txt_movil_editar").val(data.cliente_movil);
+    $("#txt_modelo_editar").val(data.cliente_modelo);
+    $("#cbm_estatus_editar").val(data.cliente_estatus).trigger("change");
 })
 
-function Modificar_Procedimiento(){
+function Modificar_Cliente(){
     //llevar el actual y el nuevo para en el procedure tener condicional
     //si el actual es igual al nuevo entonces solo actualizar el estado
-    var id = $("#txt_idprocedimiento").val();
-    var procedimientoactual =  $("#txt_procedimiento_actual_editar").val();
-    var procedimientonuevo =  $("#txt_procedimiento_nuevo_editar").val();
+    var id = $("#txt_idcliente").val();
+    var ndocactual =  $("#txt_ndoc_actual_editar").val();
+    var ndocnuevo = $("#txt_ndoc_nuevo_editar").val();
+    var nombres =  $("#txt_nombres_editar").val();
+    var apepat = $("#txt_apepat_editar").val();
+    var apemat =  $("#txt_apemat_editar").val();
+    var direccion = $("#txt_direccion_editar").val();
+    var movil = $("#txt_movil_editar").val();
+    var modelo =  $("#txt_modelo_editar").val();
     var estatus = $("#cbm_estatus_editar").val();
-    if(id.length==0){
-        Swal.fire("Mensaje de Advertencia","El id está vacio","warning");
-    }
-    if(procedimientonuevo.length==0){
-        Swal.fire("Mensaje de Advertencia","Debe ingeresar un procedimiento","warning");
+    if(id.length==0||ndocactual.length==0||ndocnuevo.length==0||nombres.length==0||apepat.length==0||apemat.length==0||direccion.length==0||movil.length==0||modelo.length==0||estatus.length==0){
+        return Swal.fire("Mensaje de Advertencia","Los campos no pueden estar vacios","warning");
     }
     $.ajax({
-       url:'../controlador/procedimiento/controlador_procedimiento_modificar.php',
+       url:'../controlador/cliente/controlador_cliente_modificar.php',
        type:'POST',
        data:{
            id:id,
-           procedimientoactual:procedimientoactual,
-           procedimientonuevo:procedimientonuevo,
-           estatus:estatus
+           ndocactual:ndocactual,
+           ndoactual:ndoactual,
+          ndocnuevo:ndocnuevo,
+          nombres:nombres,
+          apepat:apepat,
+          apemat:apemat,
+          direccion:direccion,
+          movil:movil,
+          modelo:modelo,
+          estatus:estatus
        }
     }).done(function(resp){
         if(resp>0){
             $("#modal_editar").modal('hide');
            if(resp==0){
-               listar_procedimiento();
+               listar_cliente();
             Swal.fire("Mensaje de Confirmación","Datos actualizados correctamente","success");
            }else{
-            Swal.fire("Mensaje de Advertencia","El procedimiento ya se encuentra en la base de datos","warning");
+            Swal.fire("Mensaje de Advertencia","El Nro de documnento ya se encuentra en la base de datos","warning");
            }
         }else{
             Swal.fire("Mensaje de Error","Lo sentimos no se pudo completar la actualizacion","error");
