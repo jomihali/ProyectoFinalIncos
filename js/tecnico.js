@@ -74,6 +74,7 @@ function AbrirModalRegistro(){
     $("#txt_ndoc_editar_actual").val(data.tecnico_nrodocumento);
     $("#txt_ndoc_editar_nuevo").val(data.tecnico_nrodocumento);
     $("#cbm_especialidad_editar").val(data.especialidad_id).trigger("change");
+    alert(data.especialidad_id);
     //datosu usuario
     $("#id_usuario").val(data.usu_id);
     $("#txt_usu_editar").val(data.usu_nombre);
@@ -118,6 +119,7 @@ function listar_combo_especialidad(){
         "url":"../controlador/tecnico/controlador_combo_especialidad_listar.php",
         type:'POST'
     }).done(function(resp){
+       
         var data = JSON.parse(resp);
         var cadena="";
         if(data.length>0){
@@ -131,6 +133,7 @@ function listar_combo_especialidad(){
             $("#cbm_especialidad").html(cadena);
             $("#cbm_especialidad_editar").html(cadena);
         }
+       
     })
 }
 
@@ -180,14 +183,13 @@ function Registrar_Tecnico(){
 
 function Editar_Tecnico(){
     var idtecnico=$("#id_usuario").val();
-
     var nombre =$("#txt_nombres_editar").val();
     var apepat =$("#txt_apepat_editar").val();
     var apemat =$("#txt_apemat_editar").val();
     var direccion =$("#txt_direccion_editar").val();
     var movil =$("#txt_movil_editar").val();
     var sexo =$("#cbm_sexo_editar").val();
-    var fenac =$("#txt_fe nac_editar").val();
+    var fenac =$("#txt_fenac_editar").val();
     var nrodocumentoactual =$("#txt_ndoc_editar_actual").val();
     var nrodocumentonuevo =$("#txt_ndoc_editar_nuevo").val();
     var especialidad =$("#cbm_especialidad_editar").val();

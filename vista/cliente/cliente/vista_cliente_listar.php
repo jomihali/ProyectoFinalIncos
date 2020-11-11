@@ -1,9 +1,9 @@
 <!-- importar el js usuario --> 
-<script type="text/javascript" src="../js/tecnico.js?rev=<?php echo time();?>"></script>
+<script type="text/javascript" src="../js/cliente.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
     <div class="box box-warning box-solid">
         <div class="box-header with-border">
-              <h3 class="box-title">MANTENIMIENTO DE TECNICO</h3>
+              <h3 class="box-title">MANTENIMIENTO DE CLIENTE</h3>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>

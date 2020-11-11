@@ -15,7 +15,7 @@
     $especialidad = htmlspecialchars($_POST['especialidad'],ENT_QUOTES,'UTF-8');
     $idusuario = htmlspecialchars($_POST['idusuario'],ENT_QUOTES,'UTF-8');
     $email = htmlspecialchars($_POST['email'],ENT_QUOTES,'UTF-8');
-    $consulta = $MM-Modificar_Tecnico($idtecnico,$nombre,$apepat,$apemat,$direccion,$movil,$sexo,$fenac,$nrodocumentoactual,$nrodocumentonuevo,$especialidad,$idusuario,$email);
+    $consulta = $MM->Modificar_Tecnico($idtecnico,$nombre,$apepat,$apemat,$direccion,$movil,$sexo,$fenac,$nrodocumentoactual,$nrodocumentonuevo,$especialidad,$idusuario,$email);
     echo $consulta;
 
 ?>
