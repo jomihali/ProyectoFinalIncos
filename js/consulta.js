@@ -1,6 +1,6 @@
-var tablecita;
+var tableconsulta;
 function listar_cita(){
-    tablecita = $("#tabla_cita").DataTable({
+    tableconsulta = $("#tabla_consulta").DataTable({
        "ordering":false,
        "bLengthChange":false,
        // agilizar datos
@@ -12,18 +12,19 @@ function listar_cita(){
        "async": false ,
        "processing": true,
        "ajax":{
-           "url":"../controlador/cita/controlador_cita_listar.php",
+           "url":"../controlador/consulta/controlador_consulta_listar.php",
            type:'POST'
        },
        // para el controlador_usuario_listar llama a sus datos
         "order":[[1,'asc']],
        "columns":[
            {"defaultContent":""},
-           {"data":"cita_nroatencion"},
-           {"data":"cita_feregistro"},
+           {"data":"cliente_nrodocumento"},
            {"data":"cliente"},
+           {"data":"consulta_feregistro"},
            {"data":"tecnico"},
-           {"data":"cita_estatus",
+           {"data":"especialidad_nombre"},
+           {"data":"consulta_estatus",
            render: function (data, type, row ) {
             if(data=='PENDIENTE'){
                 return "<span class='label label-danger'>"+data+"</span>";
@@ -37,17 +38,36 @@ function listar_cita(){
        "language":idioma_espanol,
        select: true
    });
-   document.getElementById("tabla_cita_filter").style.display="none";
+   document.getElementById("tabla_consulta_filter").style.display="none";
    $('input.global_filter').on( 'keyup click', function () {
         filterGlobal();
     } );
     $('input.column_filter').on( 'keyup click', function () {
         filterColumn( $(this).parents('tr').attr('data-column') );
     });
-    tablecita.on( 'draw.dt', function () {
-        var PageInfo = $('#tabla_cita').DataTable().page.info();
-        tablecita.column(0, { page: 'current' }).nodes().each( function (cell, i) {
+    tableconsulta.on( 'draw.dt', function () {
+        var PageInfo = $('#tabla_consulta').DataTable().page.info();
+        tableconsulta.column(0, { page: 'current' }).nodes().each( function (cell, i) {
                 cell.innerHTML = i + 1 + PageInfo.start;
             } );
         } );
 }
+
+
+function filterGlobal() {
+    $('#tabla_consulta').DataTable().search(
+        $('#global_filter').val(),
+    ).draw();
+}
+
+
+$('#tabla_consulta').on('click','.editar',function(){
+    var data = tableconsulta.row($(this).parents('tr')).data();//detecta a que fila hago click y enseña los datos de esa variable
+    if(tableconsulta.row(this).child.isShown()){//lo mismo en responsive
+        var data = tableconsulta.row(this).data();
+    }
+    $("#modal_editar").modal({backdrop:'static',keyboard:false})
+    $("#modal_editar").modal('show');
+    $("#id_especialidad").val(data.especialidad_id);
+
+})
