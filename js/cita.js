@@ -77,6 +77,36 @@ function AbrirModalRegistro(){
     $("#modal_registro").modal('show');
   }
 
+  function Registrar_Cita(){
+    var idcliente = $("#cbm_cliente").val();   
+    var idtecnico = $("#cbm_tecnico").val();
+    var descripcion = $("#txt_descripcion").val();
+    var idusuario = $("#txtidprincipal").val();
+    if(idcliente.length==0||idtecnico.length==0||descripcion.length==0){
+       return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
+    }
+    $.ajax({
+        url:'../controlador/cita/controlador_cita_registro.php',
+        type:'post',
+        data:{
+            idpa:idcliente,
+            iddo:idtecnico,
+            descripcion:descripcion,
+            idusuario:idusuario
+        }
+    }).done(function(resp){
+        if(resp>0){
+            if(resp==1){
+                $("#modal_registro").modal('hide');
+                listar_especialidad();
+            return  Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Especialidad registrada","success");
+            }else{
+                LimpiarCampos();
+               return Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
+            }
+        }
+    })
+}
 
 
 function listar_cliente_combo(){
@@ -139,34 +169,6 @@ function listar_tecnico_combo(id){
         }else{
             cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
             $("#cbm_tecnico").html(cadena);
-        }
-    })
-}
-function Registrar_Cita(){
-    var idcliente = $("#cbm_cliente").val();   
-    var iespecialidad = $("#txt_especialidad").val();
-    var tecnico = $("#txt_especialidad").val();
-    var estatus = $("#cbm_estatus").val();
-    if(especialidad.length==0){
-       return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
-    }
-    $.ajax({
-        url:'../controlador/especialidad/controlador_especialidad_registro.php',
-        type:'post',
-        data:{
-            especialidad:especialidad,
-            estatus:estatus
-        }
-    }).done(function(resp){
-        if(resp>0){
-            if(resp==1){
-                $("#modal_registro").modal('hide');
-                listar_especialidad();
-            return  Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Especialidad registrada","success");
-            }else{
-                LimpiarCampos();
-               return Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
-            }
         }
     })
 }

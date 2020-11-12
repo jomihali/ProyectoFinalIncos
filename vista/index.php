@@ -271,7 +271,13 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
         <a onclick="cargar_contenido('contenido_principal','cita/vista_cita_listar.php')">
-            <i class="fa fa-user"></i> <span>Cita</span>
+            <i class="fa fa-calendar"></i> <span>Cita</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <a onclick="cargar_contenido('contenido_principal','consulta/vista_consulta_listar.php')">
+            <i class="fa fa-th-list"></i> <span>Consulta</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
