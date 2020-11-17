@@ -1,5 +1,7 @@
 var tableconsulta;
-function listar_cita(){
+function listar_consulta(){
+    var fechainicio=$("#txt_fechainicio").val();
+    var fechafin=$("#txt_fechafin").val();
     tableconsulta = $("#tabla_consulta").DataTable({
        "ordering":false,
        "bLengthChange":false,
@@ -13,7 +15,11 @@ function listar_cita(){
        "processing": true,
        "ajax":{
            "url":"../controlador/consulta/controlador_consulta_listar.php",
-           type:'POST'
+           type:'POST',
+           data:{
+               fechainicio:fechainicio,
+               fechafin:fechafin
+           }
        },
        // para el controlador_usuario_listar llama a sus datos
         "order":[[1,'asc']],
@@ -53,12 +59,6 @@ function listar_cita(){
         } );
 }
 
-
-function filterGlobal() {
-    $('#tabla_consulta').DataTable().search(
-        $('#global_filter').val(),
-    ).draw();
-}
 
 
 $('#tabla_consulta').on('click','.editar',function(){

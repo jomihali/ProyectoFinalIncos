@@ -13,13 +13,22 @@
               <!-- grupo de tabla -->
             <div class="form-group">
               <!-- barra de busqueda -->
-                <div class="col-lg-10">
-                    <div class="input-group">
-                        <input type="text" class="global_filter form-control" id="global_filter" placeholder="Busqueda">
-                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                    </div>
+                <div class="col-lg-4">
+                  <label for="">Fecha Inicio</label>
+                  <input type="date" name="" id="txt_fechainicio" class="form-control">
+                </div>
+                <div class="col-lg-4">
+                  <label for="">Fecha fin</label>
+                  <input type="date" name="" id="txt_fechafin" class="form-control">
                 </div>
                 <div class="col-lg-2">
+                 <label for="">&nbsp;</label><br>
+                  <!-- boton nuevo registro de usuario -->
+                  
+                    <button class="btn btn-danger" style="width:100%" onclick="AbrirModalRegistro()"><i class="glyphicon glyphicon-search"></i>Buscar</button>
+                </div>
+                <div class="col-lg-2">
+                 <label for="">&nbsp;</label><br>
                   <!-- boton nuevo registro de usuario -->
                     <button class="btn btn-danger" style="width:100%" onclick="AbrirModalRegistro()"><i class="glyphicon glyphicon-plus"></i>Nuevo Registro</button>
                 </div>
@@ -41,8 +50,7 @@
                 <tfoot>
                     <tr>
                     <th>#</th>
-                    <th>#</th>
-                        <th>>Nro documento</th>
+                        <th>Nro documento</th>
                         <th>CLiente</th>
                         <th>Fecha</th>
                         <th>Tecnico</th>
@@ -124,7 +132,7 @@
 
 <script>
 $(document).ready(function() {
-  
+    listar_consulta();
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){
         $("#txt_especialidad").focus();
