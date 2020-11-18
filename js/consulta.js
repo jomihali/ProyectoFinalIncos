@@ -1,7 +1,7 @@
 var tableconsulta;
 function listar_consulta(){
-    var fechainicio=$("#txt_fechainicio").val();
-    var fechafin=$("#txt_fechafin").val();
+    var finicio=$("#txt_fechainicio").val();
+    var ffin=$("#txt_fechafin").val();
     tableconsulta = $("#tabla_consulta").DataTable({
        "ordering":false,
        "bLengthChange":false,
@@ -17,8 +17,8 @@ function listar_consulta(){
            "url":"../controlador/consulta/controlador_consulta_listar.php",
            type:'POST',
            data:{
-               fechainicio:fechainicio,
-               fechafin:fechafin
+               fechainicio:finicio,
+               fechafin:ffin
            }
        },
        // para el controlador_usuario_listar llama a sus datos

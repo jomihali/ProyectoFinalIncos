@@ -22,14 +22,12 @@
                   <input type="date" name="" id="txt_fechafin" class="form-control">
                 </div>
                 <div class="col-lg-2">
-                 <label for="">&nbsp;</label><br>
-                  <!-- boton nuevo registro de usuario -->
-                  
-                    <button class="btn btn-danger" style="width:100%" onclick="AbrirModalRegistro()"><i class="glyphicon glyphicon-search"></i>Buscar</button>
+                <label for="">&nbsp;</label><br>
+                    <button class="btn btn-danger" style="width:100%" onclick="listar_consulta()"><i class="glyphicon glyphicon-search"></i>Buscar</button>
                 </div>
+            </div>
                 <div class="col-lg-2">
-                 <label for="">&nbsp;</label><br>
-                  <!-- boton nuevo registro de usuario -->
+                <label for="">&nbsp;</label><br>
                     <button class="btn btn-danger" style="width:100%" onclick="AbrirModalRegistro()"><i class="glyphicon glyphicon-plus"></i>Nuevo Registro</button>
                 </div>
             </div>
