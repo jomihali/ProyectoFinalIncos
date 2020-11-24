@@ -44,7 +44,7 @@
         }
 
         function listar_especialidad_combo(){
-            $sql = "call SP_LISTAR_ESPECIALIDAD_COMBO()";
+            $sql = "call SP_LISTAR_ESPECIALIDAD_COMBO()"; 
 			$arreglo = array();
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				while ($consulta_VU = mysqli_fetch_array($consulta)) {
@@ -55,10 +55,8 @@
 			}
         }
 
-
-
-        function Registrar_Especialidad($especialidad,$estatus){
-            $sql = "call SP_REGISTRAR_ESPECIALIDAD('$especialidad','$estatus')";
+        function Registrar_Cita($idcliente,$idtecnico,$descripcion,$idusuario){
+            $sql = "call SP_REGISTRAR_CITA('$idcliente','$idtecnico','$descripcion','$idusuario')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);

@@ -12,4 +12,4 @@ $MP = new Modelo_Cliente();//instanciamos
     $consulta = $MP->Registrar_Cliente($nombres,$apepat,$apemat,$direccion,$movil,$modelo,$nrodoc);
     echo $consulta;
   
-?>
+?> 

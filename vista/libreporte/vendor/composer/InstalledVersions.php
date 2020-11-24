@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8def0df976766f61143f7332d47250bba65dc4e7',
+    'reference' => 'd9f05f0a35630bdf75ff527ec62f836823332789',
     'name' => '__root__',
   ),
   'versions' => 
@@ -31,7 +31,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8def0df976766f61143f7332d47250bba65dc4e7',
+      'reference' => 'd9f05f0a35630bdf75ff527ec62f836823332789',
     ),
     'mpdf/mpdf' => 
     array (
@@ -44,15 +44,15 @@ private static $installed = array (
     ),
     'myclabs/deep-copy' => 
     array (
-      'pretty_version' => '1.10.1',
-      'version' => '1.10.1.0',
+      'pretty_version' => '1.10.2',
+      'version' => '1.10.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '969b211f9a51aa1f6c01d1d2aef56d3bd91598e5',
+      'reference' => '776f831124e9c62e1a2c601ecc52e776d8bb7220',
       'replaced' => 
       array (
-        0 => '1.10.1',
+        0 => '1.10.2',
       ),
     ),
     'paragonie/random_compat' => 

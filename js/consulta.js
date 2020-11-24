@@ -4,7 +4,7 @@ function listar_consulta(){
     var ffin=$("#txt_fechafin").val();
     tableconsulta = $("#tabla_consulta").DataTable({
        "ordering":false,
-       "bLengthChange":false,
+       "bLengthChange":true,
        // agilizar datos
        "searching": { "regex": false },
        "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
@@ -59,8 +59,6 @@ function listar_consulta(){
         } );
 }
 
-
-
 $('#tabla_consulta').on('click','.editar',function(){
     var data = tableconsulta.row($(this).parents('tr')).data();//detecta a que fila hago click y enseña los datos de esa variable
     if(tableconsulta.row(this).child.isShown()){//lo mismo en responsive
@@ -69,5 +67,23 @@ $('#tabla_consulta').on('click','.editar',function(){
     $("#modal_editar").modal({backdrop:'static',keyboard:false})
     $("#modal_editar").modal('show');
     $("#id_especialidad").val(data.especialidad_id);
-
 })
+
+function listar_cliente_combo_consulta(){
+    $.ajax({
+        "url":"../controlador/cita/controlador_combo_cliente_listar.php",
+        type:'POST'
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        var cadena="";
+        if(data.length>0){
+            for(var i=0; i < data.length; i++){
+                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
+            }
+            $("#cbm_cliente_consulta").html(cadena);
+        }else{
+            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
+            $("#cbm_cliente_consulta").html(cadena);
+        }
+    })
+}

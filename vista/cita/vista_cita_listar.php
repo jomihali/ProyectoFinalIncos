@@ -76,13 +76,13 @@
                     </select><br><br>
                 </div>
                 <div class="col-lg-12">
-                <label for="">Descripcion problema</label>
+                <label for="">Descripcion</label>
                   <textarea  id="txt_descripcion" rows="3" class="form-control" style="resize:none;"></textarea>
-                </div><br><br><br><br>
+                </div><br><br><br>
             </div>
             <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Registrar_Especialidad()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
+                <button class="btn btn-primary" onclick="Registrar_Cita()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-var tablecita;
+var tablecita; 
 function listar_cita(){
     tablecita = $("#tabla_cita").DataTable({
        "ordering":false,
@@ -77,38 +77,6 @@ function AbrirModalRegistro(){
     $("#modal_registro").modal('show');
   }
 
-  function Registrar_Cita(){
-    var idcliente = $("#cbm_cliente").val();   
-    var idtecnico = $("#cbm_tecnico").val();
-    var descripcion = $("#txt_descripcion").val();
-    var idusuario = $("#txtidprincipal").val();
-    if(idcliente.length==0||idtecnico.length==0||descripcion.length==0){
-       return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
-    }
-    $.ajax({
-        url:'../controlador/cita/controlador_cita_registro.php',
-        type:'post',
-        data:{
-            idpa:idcliente,
-            iddo:idtecnico,
-            descripcion:descripcion,
-            idusuario:idusuario
-        }
-    }).done(function(resp){
-        if(resp>0){
-            if(resp==1){
-                $("#modal_registro").modal('hide');
-                listar_especialidad();
-            return  Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Especialidad registrada","success");
-            }else{
-                LimpiarCampos();
-               return Swal.fire("Mensaje de Advertencia","La especialidad ya existe","warning");
-            }
-        }
-    })
-}
-
-
 function listar_cliente_combo(){
     $.ajax({
         "url":"../controlador/cita/controlador_combo_cliente_listar.php",
@@ -172,3 +140,32 @@ function listar_tecnico_combo(id){
         }
     })
 }
+
+function Registrar_Cita(){
+    var idcliente = $("#cbm_cliente").val();   
+    var idtecnico = $("#cbm_tecnico").val();
+    var descripcion = $("#txt_descripcion").val();
+    var idusuario = $("#txtidprincipal").val();
+    if(idcliente.length==0||idtecnico.length==0||descripcion.length==0){
+       return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
+    }
+    $.ajax({
+        url:'../controlador/cita/controlador_cita_registro.php',
+        type:'post',
+        data:{
+            idpa:idcliente,
+            iddo:idtecnico, 
+            descripcion:descripcion,
+            idusuario:idusuario
+        }
+    }).done(function(resp){
+        if(resp>0){
+                $("#modal_registro").modal('hide');
+            Swal.fire("Mensaje de Confirmacion","Datos correctamente registrados","success");
+            }else{
+                LimpiarCampos();
+               Swal.fire("Mensaje de Advertencia","Lo sentimos el registro no se pudo completar","warning");
+            }
+        })
+}
+

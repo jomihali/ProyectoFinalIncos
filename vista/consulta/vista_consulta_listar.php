@@ -22,15 +22,15 @@
                   <input type="date" name="" id="txt_fechafin" class="form-control">
                 </div>
                 <div class="col-lg-2">
-                <label for="">&nbsp;</label><br>
-                    <button class="btn btn-danger" style="width:100%" onclick="listar_consulta()"><i class="glyphicon glyphicon-search"></i>Buscar</button>
+                <label for="">&nbsp;</label>
+                    <button class="btn btn-success" style="width:100%" onclick="listar_consulta()"><i class="glyphicon glyphicon-search"></i>Buscar</button>
                 </div>
             </div>
                 <div class="col-lg-2">
                 <label for="">&nbsp;</label><br>
                     <button class="btn btn-danger" style="width:100%" onclick="AbrirModalRegistro()"><i class="glyphicon glyphicon-plus"></i>Nuevo Registro</button>
                 </div>
-            </div>
+            </div><br>
             <!-- datos de mi tabla -->
             <table id="tabla_consulta" class="display responsive nowrap" style="width:100%">
                 <thead>
@@ -66,32 +66,26 @@
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Registro de cita</b></h4>
+            <h4 class="modal-title"><b>Registro de consulta</b></h4>
             </div>
             <div class="modal-body">
                 <div class="col-lg-12">
                 <label for="">Cliente</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_cliente" style="width:100%;">
-                    </select><br><br>
+                    <select class="js-example-basic-single" name="state" id="cbm_cliente_consulta" style="width:100%;">
+                    </select><br>
                </div>
-                <div class="col-lg-6">
-                    <label for="">Especialidad</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_especialidad" style="width:100%;">
-                    </select><br><br>
-                </div>
-                <div class="col-lg-6">
-                    <label for="">Tecnico</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_tecnico" style="width:100%;">
-                    </select><br><br>
-                </div>
                 <div class="col-lg-12">
                 <label for="">Descripcion problema</label>
-                  <textarea  id="txt_descripcion" rows="3" class="form-control" style="resize:none;"></textarea>
-                </div><br><br><br><br>
+                  <textarea  id="txt_descripcion_consulta" rows="3" class="form-control" style="resize:none;"></textarea>
+                </div>
+                <div class="col-lg-12">
+                <label for="">Diagnostico</label>
+                  <textarea  id="txt_diagnostico_consulta" rows="3" class="form-control" style="resize:none;"></textarea>
+                </div><br>
             </div>
             <div class="modal-footer">
               <!-- botones registro/cancelar -->
-                <button class="btn btn-primary" onclick="Registrar_Especialidad()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
+                <button class="btn btn-primary" onclick="Registrar_Consulta()"><i class="fa fa-check"><b>&nbsp;Registrar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
@@ -130,8 +124,9 @@
 
 <script>
 $(document).ready(function() {
-    listar_consulta();
     $('.js-example-basic-single').select2();
+    listar_consulta();
+
     $("#modal_registro").on('shown.bs.modal',function(){
         $("#txt_especialidad").focus();
     })
