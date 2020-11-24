@@ -32,7 +32,7 @@ function listar_cita(){
             }
           }
         },
-           {"defaultContent":"<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"}
+           {"defaultContent":"<button style='font-size:13px;' type='button' class='editar btn btn-primary' title='editar'><i class='fa fa-edit'></i></button>&nbsp;<button style='font-size:13px;' type='button' class='imprimir btn btn-danger' title='imprimir'><i class='fa fa-print'></i></button>"}
        ],
        "language":idioma_espanol,
        select: true
@@ -70,6 +70,15 @@ $('#tabla_cita').on('click','.editar',function(){
     $("#txt_especialidad_actual_editar").val(data.especialidad_nombre);
     $("#txt_especialidad_nueva_editar").val(data.especialidad_nombre);
     $("#cbm_estatus_editar").val(data.especialidad_estatus).trigger("change");
+})
+
+$('#tabla_cita').on('click','.imprimir',function(){
+    var data = tablecita.row($(this).parents('tr')).data();//detecta a que fila hago click y enseña los datos de esa variable
+    if(tablecita.row(this).child.isShown()){//lo mismo en responsive
+        var data = tablecita.row(this).data();
+    }
+    window.open("../vista/libreporte/reportes/generar_ticket.php?id="+parseInt(data.cita_id)+"#zoom=100%","Ticket","scrollbars=NO"); 
+                   
 })
 
 function AbrirModalRegistro(){
@@ -160,11 +169,22 @@ function Registrar_Cita(){
         }
     }).done(function(resp){
         if(resp>0){
-                $("#modal_registro").modal('hide');
-            Swal.fire("Mensaje de Confirmacion","Datos correctamente registrados","success");
-            }else{
-                LimpiarCampos();
-               Swal.fire("Mensaje de Advertencia","Lo sentimos el registro no se pudo completar","warning");
+                Swal.fire({
+                    title: 'Mensaje de Confirmacion',
+                    text: "Datos correctamente guardados,nueva cita registrada",
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Imprimir ticket'
+                  }).then((result) => {
+                    if (result.value) {
+                      window.open("../vista/libreporte/reportes/generar_ticket.php?id="+parseInt(resp)+"#zoom=100%","Ticket","scrollbars=NO"); 
+                    }else{
+                        $("#modal_registro").modal('hide');
+                        listar_cita();
+                    }
+                  })
             }
         })
 }
