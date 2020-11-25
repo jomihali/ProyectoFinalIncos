@@ -60,7 +60,7 @@
             <h4 class="modal-title"><b>Registro de cita</b></h4>
             </div>
             <div class="modal-body">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                 <label for="">Cliente</label>
                     <select class="js-example-basic-single" name="state" id="cbm_cliente" style="width:100%;">
                     </select><br><br>
@@ -70,7 +70,7 @@
                     <select class="js-example-basic-single" name="state" id="cbm_especialidad" style="width:100%;">
                     </select><br><br>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <label for="">Tecnico</label>
                     <select class="js-example-basic-single" name="state" id="cbm_tecnico" style="width:100%;">
                     </select><br><br>
@@ -97,7 +97,7 @@
             <h4 class="modal-title"><b>Editar de cita</b></h4>
             </div>
             <div class="modal-body">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                 <input type="text" id="txt_cita_id" hidden>
                 <label for="">Cliente</label>
                     <select class="js-example-basic-single" name="state" id="cbm_cliente_editar" style="width:100%;">
@@ -111,6 +111,13 @@
                 <div class="col-lg-6">
                     <label for="">Tecnico</label>
                     <select class="js-example-basic-single" name="state" id="cbm_tecnico_editar" style="width:100%;">
+                    </select><br><br>
+                </div>
+                <div class="col-lg-6">
+                    <label for="">Estado</label>
+                    <select class="js-example-basic-single" name="state" id="cbm_estatus" style="width:100%;">
+                     <option value="PENDIENTE">PENDIENTE</option>
+                     <option value="CANCELADA">CANCELADA</option>
                     </select><br><br>
                 </div>
                 <div class="col-lg-12">
@@ -133,9 +140,15 @@ $(document).ready(function() {
     listar_cita(); 
     listar_cliente_combo();
     listar_especialidad_combo();
+    listar_cliente_combo_editar();
+    listar_especialidad_combo_editar();
     $("#cbm_especialidad").change(function() {
         var idtecnico=$("#cbm_especialidad").val();
         listar_tecnico_combo(idtecnico);
+    });
+    $("#cbm_especialidad_editar").change(function() {
+        var idtecnico=$("#cbm_especialidad_editar").val();
+        listar_tecnico_combo_editar(idtecnico);
     });
     $('.js-example-basic-single').select2();
     $("#modal_registro").on('shown.bs.modal',function(){

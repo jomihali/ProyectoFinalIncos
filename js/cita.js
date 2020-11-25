@@ -26,8 +26,11 @@ function listar_cita(){
            {"data":"cita_estatus",
            render: function (data, type, row ) {
             if(data=='PENDIENTE'){
+                return "<span class='label label-primary'>"+data+"</span>";
+            }else if(data=='CANCELADO'){
                 return "<span class='label label-danger'>"+data+"</span>";
-            }else{
+            }
+            else{
               return "<span class='label label-success'>"+data+"</span>";
             }
           }
@@ -57,7 +60,6 @@ function filterGlobal() {
         $('#global_filter').val(),
     ).draw();
 }
-
 
 $('#tabla_cita').on('click','.editar',function(){
     var data = tablecita.row($(this).parents('tr')).data();//detecta a que fila hago click y enseña los datos de esa variable
@@ -220,6 +222,7 @@ function Registrar_Cita(){
     var especialidad = $("#cbm_especialidad").val();
     var idusuario = $("#txtidprincipal").val();
     if(idcliente.length==0||idtecnico.length==0||descripcion.length==0||especialidad.length==0){
+        //
        return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
     }
     $.ajax({
@@ -250,6 +253,8 @@ function Registrar_Cita(){
                         listar_cita();
                     }
                   })
+            }else{
+                Swal.fire("Mensaje de error","Lo sentimos el registro no se pudo completar","error");
             }
         })
 }
@@ -259,40 +264,43 @@ function Editar_Cita(){
     var idcliente = $("#cbm_cliente_editar").val();   
     var idtecnico = $("#cbm_tecnico_editar").val();
     var descripcion = $("#txt_descripcion_editar").val();
-    var especialidad = $("#cbm_especialidad_editar").val();
-    var idusuario = $("#txtidprincipal").val();
-    if(idcita.length==0||idcliente.length==0||idtecnico.length==0||descripcion.length==0||especialidad.length==0){
+    var idespecialidad = $("#cbm_especialidad_editar").val();
+    var estatus = $("#cbm_estatus").val();
+    if(idcita.length==0||idcliente.length==0||idtecnico.length==0||descripcion.length==0||idespecialidad.length==0||estatus.length==0){
        return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
     }
     $.ajax({
-        url:'../controlador/cita/controlador_cita_registro.php',
+        url:'../controlador/cita/controlador_cita_editar.php',
         type:'post',
         data:{
             idcita:idcita,
             idpa:idcliente,
             iddo:idtecnico, 
             descripcion:descripcion,
-            especialidad:especialidad,
-            idusuario:idusuario
+            idespecialidad:idespecialidad,
+            estatus:estatus
         }
     }).done(function(resp){
         if(resp>0){
                 Swal.fire({
                     title: 'Mensaje de Confirmacion',
-                    text: "Datos correctamente guardados,nueva cita registrada",
+                    text: "Datos correctamente actualizados",
                     icon: 'success',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Imprimir ticket'
                   }).then((result) => {
+                      tablecita.ajax.reload();
                     if (result.value) {
-                      window.open("../vista/libreporte/reportes/generar_ticket.php?id="+parseInt(resp)+"#zoom=100%","Ticket","scrollbars=NO"); 
+                      window.open("../vista/libreporte/reportes/generar_ticket.php?id="+parseInt(idcita)+"#zoom=100%","Ticket","scrollbars=NO"); 
                     }else{
                         $("#modal_registro").modal('hide');
                         listar_cita();
                     }
                   })
+            }else{
+                Swal.fire("Mensaje de error","Lo sentimos el registro no se pudo editar","error");
             }
         })
 }
