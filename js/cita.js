@@ -64,12 +64,15 @@ $('#tabla_cita').on('click','.editar',function(){
     if(tablecita.row(this).child.isShown()){//lo mismo en responsive
         var data = tablecita.row(this).data();
     }
+    listar_cliente_combo_editar();
+    listar_especialidad_combo_editar();
     $("#modal_editar").modal({backdrop:'static',keyboard:false})
     $("#modal_editar").modal('show');
-    $("#id_especialidad").val(data.especialidad_id);
-    $("#txt_especialidad_actual_editar").val(data.especialidad_nombre);
-    $("#txt_especialidad_nueva_editar").val(data.especialidad_nombre);
-    $("#cbm_estatus_editar").val(data.especialidad_estatus).trigger("change");
+    $("#txt_cita_id").val(data.cita_id);
+    $("#cbm_cliente_editar").val(data.cliente_id).trigger("change");
+    $("#cbm_especialidad_editar").val(data.especialidad_id).trigger("change");
+    $("#cbm_tecnico_editar").val(data.tecnico_id).trigger("change");
+    $("#txt_descripcion_editar").val(data.cita_descripcion);
 })
 
 $('#tabla_cita').on('click','.imprimir',function(){
@@ -98,11 +101,9 @@ function listar_cliente_combo(){
                   cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
             }
             $("#cbm_cliente").html(cadena);
-            $("#cbm_cliente_editar").html(cadena);
         }else{
             cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
             $("#cbm_cliente").html(cadena);
-            $("#cbm_cliente_editar").html(cadena);
         }
     })
 }
@@ -150,12 +151,75 @@ function listar_tecnico_combo(id){
     })
 }
 
+function listar_cliente_combo_editar(){
+    $.ajax({
+        "url":"../controlador/cita/controlador_combo_cliente_listar.php",
+        type:'POST'
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        var cadena="";
+        if(data.length>0){
+            for(var i=0; i < data.length; i++){
+                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
+            }
+            $("#cbm_cliente_editar").html(cadena);
+        }else{
+            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
+            $("#cbm_cliente_editar").html(cadena);
+        }
+    })
+}
+
+function listar_especialidad_combo_editar(){
+    $.ajax({
+        "url":"../controlador/cita/controlador_combo_especialidad_listar.php",
+        type:'POST'
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        var cadena="";
+        if(data.length>0){
+            for(var i=0; i < data.length; i++){
+                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
+            }
+            $("#cbm_especialidad_editar").html(cadena);
+            var id=$("#cbm_especialidad_editar").val();
+            listar_tecnico_combo_editar(id);
+        }else{
+            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
+            $("#cbm_especialidad_editar").html(cadena);
+        }
+    })
+}
+
+function listar_tecnico_combo_editar(id){
+    $.ajax({
+        "url":"../controlador/cita/controlador_combo_tecnico_listar.php",
+        type:'POST',
+        data:{
+           id:id
+        }
+    }).done(function(resp){
+        var data = JSON.parse(resp);
+        var cadena="";
+        if(data.length>0){
+            for(var i=0; i < data.length; i++){
+                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
+            }
+            $("#cbm_tecnico_editar").html(cadena);
+        }else{
+            cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
+            $("#cbm_tecnico_editar").html(cadena);
+        }
+    })
+}
+
 function Registrar_Cita(){
     var idcliente = $("#cbm_cliente").val();   
     var idtecnico = $("#cbm_tecnico").val();
     var descripcion = $("#txt_descripcion").val();
+    var especialidad = $("#cbm_especialidad").val();
     var idusuario = $("#txtidprincipal").val();
-    if(idcliente.length==0||idtecnico.length==0||descripcion.length==0){
+    if(idcliente.length==0||idtecnico.length==0||descripcion.length==0||especialidad.length==0){
        return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
     }
     $.ajax({
@@ -165,6 +229,7 @@ function Registrar_Cita(){
             idpa:idcliente,
             iddo:idtecnico, 
             descripcion:descripcion,
+            especialidad:especialidad,
             idusuario:idusuario
         }
     }).done(function(resp){
@@ -189,3 +254,45 @@ function Registrar_Cita(){
         })
 }
 
+function Editar_Cita(){
+    var idcita = $("#txt_cita_id").val();
+    var idcliente = $("#cbm_cliente_editar").val();   
+    var idtecnico = $("#cbm_tecnico_editar").val();
+    var descripcion = $("#txt_descripcion_editar").val();
+    var especialidad = $("#cbm_especialidad_editar").val();
+    var idusuario = $("#txtidprincipal").val();
+    if(idcita.length==0||idcliente.length==0||idtecnico.length==0||descripcion.length==0||especialidad.length==0){
+       return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
+    }
+    $.ajax({
+        url:'../controlador/cita/controlador_cita_registro.php',
+        type:'post',
+        data:{
+            idcita:idcita,
+            idpa:idcliente,
+            iddo:idtecnico, 
+            descripcion:descripcion,
+            especialidad:especialidad,
+            idusuario:idusuario
+        }
+    }).done(function(resp){
+        if(resp>0){
+                Swal.fire({
+                    title: 'Mensaje de Confirmacion',
+                    text: "Datos correctamente guardados,nueva cita registrada",
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Imprimir ticket'
+                  }).then((result) => {
+                    if (result.value) {
+                      window.open("../vista/libreporte/reportes/generar_ticket.php?id="+parseInt(resp)+"#zoom=100%","Ticket","scrollbars=NO"); 
+                    }else{
+                        $("#modal_registro").modal('hide');
+                        listar_cita();
+                    }
+                  })
+            }
+        })
+}

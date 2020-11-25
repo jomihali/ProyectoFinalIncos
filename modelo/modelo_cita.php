@@ -55,8 +55,8 @@
 			}
         }
 
-        function Registrar_Cita($idcliente,$idtecnico,$descripcion,$idusuario){
-            $sql = "call SP_REGISTRAR_CITA('$idcliente','$idtecnico','$descripcion','$idusuario')";
+        function Registrar_Cita($idusuario,$idcliente,$idtecnico,$descripcion,$especialidad){
+            $sql = "call SP_REGISTRAR_CITA('$idusuario','$idcliente','$idtecnico','$descripcion','$especialidad')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);
