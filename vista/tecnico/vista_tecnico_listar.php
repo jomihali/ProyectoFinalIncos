@@ -98,7 +98,7 @@
                 </div>
                 <div class="col-lg-6">
                     <label for="">Movil</label>
-                    <input type="text" class="form-control" id="txt_movil" placeholder="Ingresar movil">
+                    <input type="text" class="form-control" id="txt_movil" maxlength="8" onkeypress="return soloNumeros(event)" placeholder="Ingresar movil">
                 </div>
                 <div class="col-lg-12" style="text-align:center">
                     <b> DATOS DE USUARIO</b><br><br>
@@ -144,7 +144,7 @@
             <div class="modal-body">
               <div class="row">
                 <div class="col-lg-12">
-                <input type="text" id="id_tecnico">
+                <input type="text" id="id_tecnico" hidden>
                     <label for="">Nombres</label>
                     <input type="text" class="form-control" id="txt_nombres_editar" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa nombres"><br>
                 </div>
@@ -173,8 +173,8 @@
                 </div>
                 <div class="col-lg-6">
                     <label for="">N documento</label>
-                    <input type="text" class="form-control" id="txt_ndoc_editar_actual" placeholder="Numero de documento" disabled>
-                    <input type="text" class="form-control" id="txt_ndoc_editar_nuevo" placeholder="Numero de documento">
+                    <input type="text" id="txt_ndoc_editar_actual" placeholder="Numero de documento" hidden>
+                    <input type="text" class="form-control" id="txt_ndoc_editar_nuevo" maxlength="12" onkeypress="return soloNumeros(event)" placeholder="Numero de documento">
                 </div>
                 <div class="col-lg-6">
                     <label for="">Especialidad</label>
@@ -183,14 +183,14 @@
                 </div>
                 <div class="col-lg-4">
                     <label for="">Movil</label>
-                    <input type="text" class="form-control" id="txt_movil_editar" placeholder="Ingresar movil"><br>
+                    <input type="text" class="form-control" id="txt_movil_editar" maxlength="8" onkeypress="return soloNumeros(event)" placeholder="Ingresar movil"><br>
                 </div>
                 <div class="col-lg-12" style="text-align:center">
                     <b> DATOS DE USUARIO</b><br><br>
                     </select><br><br>
                 </div>
                 <div class="col-lg-6">
-                <input class="text" id="id_usuario">
+                <input class="text" id="id_usuario" hidden>
                     <label for="">Usuario</label>
                     <input type="text" class="form-control" id="txt_usu_editar" placeholder="Ingresar usuario" disabled><br>
                 </div>

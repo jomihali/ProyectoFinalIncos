@@ -68,12 +68,12 @@ function AbrirModalRegistro(){
     $("#txt_apepat_editar").val(data.tecnico_apepat);
     $("#txt_apemat_editar").val(data.tecnico_apemat);
     $("#txt_direccion_editar").val(data.tecnico_direccion);
-    $("#txt_movil_editar").val(data.tecnico_movil);
     $("#cbm_sexo_editar").val(data.tecnico_sexo).trigger("change");
     $("#txt_fenac_editar").val(data.tecnico_fenac);
     $("#txt_ndoc_editar_actual").val(data.tecnico_nrodocumento);
     $("#txt_ndoc_editar_nuevo").val(data.tecnico_nrodocumento);
     $("#cbm_especialidad_editar").val(data.especialidad_id).trigger("change");
+    $("#txt_movil_editar").val(data.tecnico_movil);
     alert(data.especialidad_id);
     //datosu usuario
     $("#id_usuario").val(data.usu_id);
@@ -142,11 +142,11 @@ function Registrar_Tecnico(){
   var apepat =$("#txt_apepat").val();
   var apemat =$("#txt_apemat").val();
   var direccion =$("#txt_direccion").val();
-  var movil =$("#txt_movil").val();
   var sexo =$("#cbm_sexo").val();
   var fenac =$("#txt_fenac").val();
   var nrodocumento =$("#txt_ndoc").val();
   var especialidad =$("#cbm_especialidad").val();
+  var movil =$("#txt_movil").val();
   var usu =$("#txt_usu").val();
   var contra =$("#txt_contra").val();
   var rol =$("#cbm_rol").val();
@@ -163,18 +163,27 @@ function Registrar_Tecnico(){
        apepat:apepat,
        apemat:apemat,
        direccion:direccion,
-       movil:movil,
        sexo:sexo,
        fenac:fenac,
        nrodocumento:nrodocumento,
        especialidad:especialidad,
+       movil:movil,
        usu:usu,
        contra:contra,
        rol:rol,
        email:email
      }
    }).done(function(resp){
-     alert(resp);
+        if(resp==1){
+            $("#modal_registro").modal('hide');
+            Swal.fire("Mensaje De Confirmacion","Datos correctamente, Nuevo Tecnico Registrado","success")
+            .then ( ( value ) =>  {
+                LimpiarRegistro();
+                table.ajax.reload();
+            });
+        }else{
+            return Swal.fire("Mensaje De Error","Lo sentimos, no se pudo completar el registro","error") 
+         }
    })
 }
 
@@ -184,12 +193,12 @@ function Editar_Tecnico(){
     var apepat =$("#txt_apepat_editar").val();
     var apemat =$("#txt_apemat_editar").val();
     var direccion =$("#txt_direccion_editar").val();
-    var movil =$("#txt_movil_editar").val();
     var sexo =$("#cbm_sexo_editar").val();
     var fenac =$("#txt_fenac_editar").val();
     var nrodocumentoactual =$("#txt_ndoc_editar_actual").val();
     var nrodocumentonuevo =$("#txt_ndoc_editar_nuevo").val();
     var especialidad =$("#cbm_especialidad_editar").val();
+    var movil =$("#txt_movil_editar").val();
     var idusuario=$("#id_usuario").val();
     var email =$("#txt_email_editar").val();
      if(nombre.length==0||apepat.length==0||apemat.length==0||direccion.length==0||movil.length==0||sexo.length==0||fenac.length==0||nrodocumentonuevo.length==0||especialidad.length==0||email.length==0){
@@ -204,17 +213,26 @@ function Editar_Tecnico(){
          apepat:apepat,
          apemat:apemat,
          direccion:direccion,
-         movil:movil,
          sexo:sexo,
          fenac:fenac,
          nrodocumentoactual:nrodocumentoactual,
          nrodocumentonuevo:nrodocumentonuevo,
          especialidad:especialidad,
+         movil:movil,
          idusuario:idusuario,
          email:email
        }
      }).done(function(resp){
-       alert(resp);
+        if(resp==1){
+            $("#modal_registro").modal('hide');
+            Swal.fire("Mensaje De Confirmacion","Datos correctamente,Tecnico Actualizado","success")
+            .then ( ( value ) =>  {
+                LimpiarRegistro();
+                table.ajax.reload();
+            });
+        }else{
+            return Swal.fire("Mensaje De Error","Lo sentimos, no se pudo completarla edicion","error") 
+         }
      })
   }
   
