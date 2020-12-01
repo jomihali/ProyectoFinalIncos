@@ -120,7 +120,6 @@ function Editar_Especialidad(){
             estatus:estatus
         }
     }).done(function(resp){
-        alert(resp);
         if(resp>0){
             if(resp==1){
                 $("#modal_editar").modal('hide');

@@ -1,4 +1,4 @@
-<!-- importar el js usuario -->
+<!-- importar el js usuario --> 
 <script type="text/javascript" src="../js/cliente.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
     <div class="box box-warning box-solid">

@@ -306,6 +306,12 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+          <a onclick="cargar_contenido('contenido_principal','historial/vista_historial_listar.php')">
+            <i class="fa fa-file-text-o"></i> <span>Historial</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
           <a onclick="cargar_contenido('contenido_principal','servicio/vista_servicio_listar.php')">
             <i class="fa fa-cogs"></i><span>Servicio</span>
             <span class="pull-right-container">

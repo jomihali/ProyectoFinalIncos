@@ -1,4 +1,4 @@
-<!-- importar el js usuario -->
+<!-- importar el js usuario --> 
 <script type="text/javascript" src="../js/consulta.js?rev=<?php echo time();?>"></script>
 <div class="col-md-12">
     <div class="box box-warning box-solid">
@@ -13,7 +13,7 @@
               <!-- grupo de tabla -->
             <div class="form-group">
               <!-- barra de busqueda -->
-                <div class="col-lg-4">
+                <div class="col-lg-4">      
                   <label for="">Fecha Inicio</label>
                   <input type="date" name="" id="txt_fechainicio" class="form-control">
                 </div>
@@ -93,29 +93,31 @@
     </div>
 
     <div class="modal fade" id="modal_editar" role="dialog">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" >&times;</button>
-            <h4 class="modal-title"><b>Editar Especialidad</b></h4>
+            <h4 class="modal-title"><b>Editar consulta</b></h4>
             </div>
             <div class="modal-body">
+            <div class="row">
                 <div class="col-lg-12">
-                     <input type="text" id="id_especialidad" hidden>
-                     <label for="">Nombre</label>
-                    <input type="text"  id="txt_especialidad_actual_editar" placeholder="Ingresa una especialidad" hidden>
-                    <input type="text" class="form-control" id="txt_especialidad_nueva_editar" placeholder="Ingresa una especialidad"><br>
+                     <input type="text" id="txt_consulta_id" hidden>
+                     <label for="">Cliente</label>
+                    <input type="text"  id="txt_cliente_consultaeditar" readonly class="form-control"><br>
                 </div>
                 <div class="col-lg-12">
-                    <label for="">Estado</label>
-                    <select class="js-example-basic-single" name="state" id="cbm_estatus_editar" style="width:100%;">
-                        <option value="ACTIVO">ACTIVO</option>
-                        <option value="INACTIVO">INACTIVO</option>
-                    </select><br><br>
+                     <label for="">Descripcion</label>
+                    <textarea type="text"  id="txt_descripcion_consultaeditar" rowa="3" class="form-control" style="resize:none"></textarea><br>
+                </div>
+                <div class="col-lg-12">
+                     <label for="">Diagnostico</label>
+                    <textarea type="text"  id="txt_diagnostico_consultaeditar" rowa="3" class="form-control" style="resize:none"></textarea><br>
+                </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" onclick="Editar_Especialidad()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
+                <button class="btn btn-primary" onclick="Editar_Consulta()"><i class="fa fa-check"><b>&nbsp;Editar</b></i></button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"><b>&nbsp;Cerrar</b></i></button>
             </div>
         </div>
@@ -125,12 +127,15 @@
 <script>
 $(document).ready(function() {
     $('.js-example-basic-single').select2();
-    listar_consulta();
 
     $("#modal_registro").on('shown.bs.modal',function(){
         $("#txt_especialidad").focus();
-    })
+    });
+    listar_consulta();
+    listar_cliente_combo_consulta();
 } );
+
+
 $('.box').boxWidget({
     animationSpeed:500,
     collapseTrigger:'[data-widget="collapse"]',

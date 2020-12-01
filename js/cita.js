@@ -66,14 +66,14 @@ $('#tabla_cita').on('click','.editar',function(){
     if(tablecita.row(this).child.isShown()){//lo mismo en responsive
         var data = tablecita.row(this).data();
     }
-    listar_cliente_combo_editar();
-    listar_especialidad_combo_editar();
+
     $("#modal_editar").modal({backdrop:'static',keyboard:false})
     $("#modal_editar").modal('show');
     $("#txt_cita_id").val(data.cita_id);
     $("#cbm_cliente_editar").val(data.cliente_id).trigger("change");
     $("#cbm_especialidad_editar").val(data.especialidad_id).trigger("change");
-    $("#cbm_tecnico_editar").val(data.tecnico_id).trigger("change");
+    listar_tecnico_combo_editar(data.especialidad_id,data.tecnico_id);
+    $("cbm_estatus").val(data.cita_estatus).trigger("change");
     $("#txt_descripcion_editar").val(data.cita_descripcion);
 })
 
@@ -193,7 +193,7 @@ function listar_especialidad_combo_editar(){
     })
 }
 
-function listar_tecnico_combo_editar(id){
+function listar_tecnico_combo_editar(id,idtecnico){
     $.ajax({
         "url":"../controlador/cita/controlador_combo_tecnico_listar.php",
         type:'POST',
@@ -208,6 +208,7 @@ function listar_tecnico_combo_editar(id){
                   cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
             }
             $("#cbm_tecnico_editar").html(cadena);
+            $("#cbm_tecnico_editar").val(idtecnico).trigger("change");
         }else{
             cadena+="<option value=''>NO SE ENCONTRARON REGISTROS</option>";
             $("#cbm_tecnico_editar").html(cadena);
@@ -257,7 +258,7 @@ function Registrar_Cita(){
                 Swal.fire("Mensaje de error","Lo sentimos el registro no se pudo completar","error");
             }
         })
-}
+} 
 
 function Editar_Cita(){
     var idcita = $("#txt_cita_id").val();

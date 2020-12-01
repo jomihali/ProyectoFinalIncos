@@ -1,6 +1,6 @@
 <?php
     class Modelo_Consulta{
-
+ 
         private $conexion;
         function __construct(){
             require_once 'modelo_conexion.php';
@@ -20,7 +20,7 @@
         }
 
         function listar_cliente_combo(){
-            $sql = "call SP_LISTAR_CLIENTE_COMBO()";
+            $sql = "call SP_LISTAR_CLIENTE_CITA()";
 			$arreglo = array();
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				while ($consulta_VU = mysqli_fetch_array($consulta)) {
@@ -31,25 +31,27 @@
 			}
         }
 
-        function Registrar_Especialidad($especialidad,$estatus){
-            $sql = "call SP_REGISTRAR_ESPECIALIDAD('$especialidad','$estatus')";
+        function Registrar_Consulta($idcliente,$descripcion,$diagnostico){
+            $sql = "call SP_REGISTRAR_CONSULTA('$idcliente','$descripcion','$diagnostico')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
-				if ($row = mysqli_fetch_array($consulta)) {
-                        return $id= trim($row[0]);
-				}
+			    	return 1;
+				}else{
+                 return 0;
+                }
 				$this->conexion->cerrar();
-			}
+            }
+ 
+         function Modificar_Consulta($idconsulta,$descripcion,$diagnostico){
+                $sql = "call SP_MODIFICAR_CONSULTA('$idconsulta','$descripcion','$diagnostico')";
+                if ($consulta = $this->conexion->conexion->query($sql)) {
+                        return 1;
+                    }else{
+                         return 0;
+                    }
+                    $this->conexion->cerrar();
+                }           
+
         }
       
-        function Modificar_Especialidad($id,$especialidadactual,$especialidadnueva,$estatus){
-            $sql = "call SP_MODIFICAR_ESPECIALIDAD('$id','$especialidadactual','$especialidadnueva','$estatus')";
-			if ($consulta = $this->conexion->conexion->query($sql)) {
-				if ($row = mysqli_fetch_array($consulta)) {
-                        return $id= trim($row[0]);
-				}
-				$this->conexion->cerrar();
-			}
-        }
-
-    }
 ?>
+ 

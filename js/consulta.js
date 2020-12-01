@@ -44,13 +44,7 @@ function listar_consulta(){
        "language":idioma_espanol,
        select: true
    });
-   document.getElementById("tabla_consulta_filter").style.display="none";
-   $('input.global_filter').on( 'keyup click', function () {
-        filterGlobal();
-    } );
-    $('input.column_filter').on( 'keyup click', function () {
-        filterColumn( $(this).parents('tr').attr('data-column') );
-    });
+
     tableconsulta.on( 'draw.dt', function () {
         var PageInfo = $('#tabla_consulta').DataTable().page.info();
         tableconsulta.column(0, { page: 'current' }).nodes().each( function (cell, i) {
@@ -66,19 +60,22 @@ $('#tabla_consulta').on('click','.editar',function(){
     }
     $("#modal_editar").modal({backdrop:'static',keyboard:false})
     $("#modal_editar").modal('show');
-    $("#id_especialidad").val(data.especialidad_id);
+    $("#txt_consulta_id").val(data.consulta_id);
+    $("#txt_cliente_consultaeditar").val(data.cliente);
+    $("#txt_descripcion_consultaeditar").val(data.consulta_descripcion);
+    $("#txt_diagnostico_consultaeditar").val(data.consulta_diagnostico);
 })
 
 function listar_cliente_combo_consulta(){
     $.ajax({
-        "url":"../controlador/cita/controlador_combo_cliente_listar.php",
+        "url":"../controlador/consulta/controlador_combo_cliente_cita_listar.php",
         type:'POST'
     }).done(function(resp){
         var data = JSON.parse(resp);
         var cadena="";
         if(data.length>0){
             for(var i=0; i < data.length; i++){
-                  cadena+="<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";  
+                  cadena+="<option value='"+data[i][0]+"'>Nro Atenci&oacute;n: "+data[i][1]+"Cliente: "+data[i][2]+"</option>";  
             }
             $("#cbm_cliente_consulta").html(cadena);
         }else{
@@ -86,4 +83,59 @@ function listar_cliente_combo_consulta(){
             $("#cbm_cliente_consulta").html(cadena);
         }
     })
+}
+
+function Registrar_Consulta(){
+    var idcliente = $("#cbm_cliente_consulta").val();   
+    var descripcion = $("#txt_descripcion_consulta").val();
+    var diagnostico = $("#txt_diagnostico_consulta").val();
+    if(idcliente.length==0||descripcion.length==0||diagnostico.length==0){
+        //
+       return Swal.fire("Mensaje de advertencia","El campo procedimiento debe tener datos","warning");
+    }
+    $.ajax({
+        url:'../controlador/consulta/controlador_consulta_registro.php',
+        type:'post',
+        data:{
+            idcliente:idcliente,
+            descripcion:descripcion,
+            diagnostico:diagnostico, 
+            
+        }
+    }).done(function(resp){
+        if(resp>0){
+            $("#modal_registro").modal('hide');
+            listar_consulta();
+            Swal.fire("Mensaje de confirmacion","El registro se completo correctamente","success");
+            }else{
+                Swal.fire("Mensaje de error","Lo sentimos el registro no se pudo completar","error");
+            }
+        })
+}
+
+function Editar_Consulta(){
+    var idconsulta = $("#txt_consulta_id").val();   
+    var descripcion = $("#txt_descripcion_consultaeditar").val();
+    var diagnostico = $("#txt_diagnostico_consultaeditar").val();
+    if(descripcion.length==0||diagnostico.length==0){
+       return Swal.fire("Mensaje de advertencia","El campo debe tener datos","warning");
+    }
+    $.ajax({
+        url:'../controlador/consulta/controlador_consulta_modificar.php',
+        type:'post',
+        data:{
+            idconsulta:idconsulta,
+            descripcion:descripcion,
+            diagnostico:diagnostico, 
+        }
+    }).done(function(resp){
+        alert(resp);
+        if(resp>0){
+            $("#modal_editar").modal('hide');
+            listar_consulta();
+            Swal.fire("Mensaje de confirmacion"," Datos correctamente actualizados","success");
+            }else{
+                Swal.fire("Mensaje de error","Lo sentimosno se pudo completar la edicion","error");
+            }
+        })
 }
