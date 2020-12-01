@@ -2,7 +2,7 @@
     class Modelo_Tecnico{
 
         private $conexion;
-        function __construct(){
+        function __construct(){ 
             require_once 'modelo_conexion.php';
             $this->conexion = new conexion();
             $this->conexion->conectar();

@@ -23,7 +23,7 @@
                   <!-- boton nuevo registro de usuario -->
                     <button class="btn btn-danger" style="width:100%" onclick="AbrirModalRegistro()"><i class="glyphicon glyphicon-plus"></i>Nuevo Registro</button>
                 </div>
-            </div>
+            </div> 
             <!-- datos de mi tabla -->
             <table id="tabla_tecnico" class="display responsive nowrap" style="width:100%">
                 <thead>
@@ -47,7 +47,7 @@
                     </tr>
                 </tfoot>
             </table>
-            </div>
+            </div> 
     </div>
 </div>
 
@@ -62,19 +62,19 @@
               <div class="row">
                 <div class="col-lg-12">
                     <label for="">Nombres</label>
-                    <input type="text" class="form-control" id="txt_nombres" placeholder="Ingresa nombres"><br>
+                    <input type="text" class="form-control" id="txt_nombres" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa nombres"><br>
                 </div>
                   <div class="col-lg-6">
                     <label for="">Apellido paterno</label>
-                    <input type="text" class="form-control" id="txt_apepat" placeholder="Apellido paterno"><br>
+                    <input type="text" class="form-control" id="txt_apepat" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Apellido paterno"><br>
                 </div>
                 <div class="col-lg-6">
                     <label for="">Apellido materno</label>
-                    <input type="text" class="form-control" id="txt_apemat" placeholder="Apellido materno"><br>
+                    <input type="text" class="form-control" id="txt_apemat" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Apellido materno"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Direccion</label>
-                    <input type="text" class="form-control" id="txt_direccion" placeholder="Ingresa direccion"><br>
+                    <input type="text" class="form-control" id="txt_direccion" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa direccion"><br>
                 </div>
                 <div class="col-lg-4">
                     <label for="">Sexo</label>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col-lg-4">
                     <label for="">N documento</label>
-                    <input type="text" class="form-control" id="txt_ndoc" placeholder="Numero de documento"><br>
+                    <input type="text" class="form-control" id="txt_ndoc" maxlength="12" onkeypress="return soloNumeros(event)" placeholder="Numero de documento"><br>
                 </div>
                 <div class="col-lg-6">
                     <label for="">Especialidad</label>
@@ -146,19 +146,19 @@
                 <div class="col-lg-12">
                 <input type="text" id="id_tecnico">
                     <label for="">Nombres</label>
-                    <input type="text" class="form-control" id="txt_nombres_editar" placeholder="Ingresa nombres"><br>
+                    <input type="text" class="form-control" id="txt_nombres_editar" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa nombres"><br>
                 </div>
                   <div class="col-lg-6">
                     <label for="">Apellido paterno</label>
-                    <input type="text" class="form-control" id="txt_apepat_editar" placeholder="Apellido paterno"><br>
+                    <input type="text" class="form-control" id="txt_apepat_editar" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Apellido paterno"><br>
                 </div>
                 <div class="col-lg-6">
                     <label for="">Apellido materno</label>
-                    <input type="text" class="form-control" id="txt_apemat_editar" placeholder="Apellido materno"><br>
+                    <input type="text" class="form-control" id="txt_apemat_editar" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Apellido materno"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Direccion</label>
-                    <input type="text" class="form-control" id="txt_direccion_editar" placeholder="Ingresa direccion"><br>
+                    <input type="text" class="form-control" id="txt_direccion_editar" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa direccion"><br>
                 </div>
                 <div class="col-lg-4">
                     <label for="">Sexo</label>

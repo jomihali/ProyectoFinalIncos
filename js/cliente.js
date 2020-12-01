@@ -64,6 +64,16 @@ function AbrirModalRegistro(){
   $("#modal_registro").modal('show');
 }
 
+function LimpiarDatos(){
+    $("#txt_ndoc").val("");
+    $("#txt_nombres").val("");
+    $("#txt_apepat").val("");
+    $("#txt_apemat").val("");
+    $("#txt_direccion").val("");
+    $("#txt_movil").val("");
+    $("#txt_modelo").val("");
+}
+
 function Registrar_Cliente(){
     var nrodoc = $("#txt_ndoc").val();
     var nombres = $("#txt_nombres").val();
@@ -92,9 +102,11 @@ function Registrar_Cliente(){
             if(resp==1){
                 $("#modal_registro").modal('hide');
                 listar_cliente();
+                LimpiarDatos();
               Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Procedimiento registrado","success");
             }else{
                 Swal.fire("Mensaje de Advertencia","El Procedimiento ya está existe","warning");
+                LimpiarDatos();
             }
         }
     })

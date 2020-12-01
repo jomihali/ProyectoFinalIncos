@@ -61,6 +61,9 @@ function AbrirModalRegistro(){
   $("#modal_registro").modal('show');
 }
 
+function LimpiarDatos(){
+    $("#txt_procedimiento").val("");
+}
 function Registro_Procedimiento(){
     var procedimiento = $("#txt_prodecimiento").val();
     var estatus = $("#cbm_estatus").val();
@@ -79,8 +82,10 @@ function Registro_Procedimiento(){
             if(resp==1){
                 $("#modal_registro").modal('hide');
                 listar_procedimiento();
+                LimpiarDatos();
               Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Procedimiento registrado","success");
             }else{
+                LimpiarDatos();
                 Swal.fire("Mensaje de Advertencia","El Procedimiento ya está existe","warning");
             }
         }

@@ -58,7 +58,7 @@
             <div class="modal-body">
                 <div class="col-lg-12">
                     <label for="">Nombre</label>
-                    <input type="text" class="form-control" id="txt_prodecimiento" placeholder="Ingresa un procedimiento"><br>
+                    <input type="text" class="form-control" id="txt_prodecimiento" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa un procedimiento"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
@@ -88,7 +88,7 @@
                 <div class="col-lg-12">
                     <label for="">Nombre</label>
                     <input type="text" id="txt_idprocedimiento" hidden >
-                    <input type="text" id="txt_procedimiento_actual_editar" placeholder="Ingresa un procedimiento" hidden>
+                    <input type="text" id="txt_procedimiento_actual_editar" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa un procedimiento" hidden>
                     <input type="text" class="form-control" id="txt_procedimiento_nuevo_editar" placeholder="Ingresa un procedimiento"><br>
                 </div>
                 <div class="col-lg-12">

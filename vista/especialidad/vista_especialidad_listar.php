@@ -58,7 +58,7 @@
             <div class="modal-body">
                 <div class="col-lg-12">
                     <label for="">Nombre</label>
-                    <input type="text" class="form-control" id="txt_especialidad" placeholder="Ingresa una especialidad"><br>
+                    <input type="text" class="form-control" id="txt_especialidad" maxlength="50" onkeypress="return soloLetras(event)"  placeholder="Ingresa una especialidad"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
@@ -88,7 +88,7 @@
                 <div class="col-lg-12">
                      <input type="text" id="id_especialidad" hidden>
                      <label for="">Nombre</label>
-                    <input type="text"  id="txt_especialidad_actual_editar" placeholder="Ingresa una especialidad" hidden>
+                    <input type="text"  id="txt_especialidad_actual_editar" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa una especialidad" hidden>
                     <input type="text" class="form-control" id="txt_especialidad_nueva_editar" placeholder="Ingresa una especialidad"><br>
                 </div>
                 <div class="col-lg-12">

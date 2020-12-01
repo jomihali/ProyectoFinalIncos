@@ -1,4 +1,4 @@
-var tabletecnico; 
+var tabletecnico;  
 function listar_tecnico(){
     tabletecnico = $("#tabla_tecnico").DataTable({
        "ordering":false,
@@ -25,7 +25,7 @@ function listar_tecnico(){
            {"data":"tecnico_movil"},
            {"defaultContent":"<button style='font-size:13px;' type='button' class='editar btn btn-primary'><i class='fa fa-edit'></i></button>"}
        ],
-       "language":idioma_espanol,
+       "language":idioma_espanol, 
        select: true
    });
    document.getElementById("tabla_tecnico_filter").style.display="none";

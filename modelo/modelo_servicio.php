@@ -19,8 +19,8 @@
 			}
         }
 
-        function Registrar_Servicio($servicio,$estatus){
-            $sql = "call SP_REGISTRAR_SERVICIO('$servicio','$estatus')";
+        function Registrar_Servicio($servicio,$precio,$estatus){
+            $sql = "call SP_REGISTRAR_SERVICIO('$servicio','$precio','$estatus')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);
@@ -29,8 +29,8 @@
 			}
         }
       
-        function Modificar_Servicio($id,$servicioactual,$servicionuevo,$estatus){
-            $sql = "call SP_MODIFICAR_SERVICIO('$id','$servicioactual','$servicionuevo','$estatus')";
+        function Modificar_Servicio($id,$servicioactual,$servicionuevo,$precioactual,$precionuevo,$estatus){
+            $sql = "call SP_MODIFICAR_SERVICIO('$id','$servicioactual','$servicionuevo','$precioactual','$precionuevo','$estatus')";
 			if ($consulta = $this->conexion->conexion->query($sql)) {
 				if ($row = mysqli_fetch_array($consulta)) {
                         return $id= trim($row[0]);
@@ -40,4 +40,4 @@
         }
 
     }
-?>
+?> 

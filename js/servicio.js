@@ -22,9 +22,10 @@ function listar_servicio(){
              {"defaultContent":""},
              {"data":"servicio_nombre"},
              {"data":"servicio_feregistro"},
+             {"data":"servicio_precio"},
              {"data":"servicio_estatus",
              render: function (data, type, row ) {
-              if(data=='ACTIVO'){
+              if(data=='ACTIVO'){ 
                   return "<span class='label label-success'>"+data+"</span>";
               }else{
                 return "<span class='label label-danger'>"+data+"</span>";
@@ -65,8 +66,9 @@ function AbrirModalRegistro(){
 
 function Registrar_Servicio(){
     var servicio = $("#txt_servicio").val();
+    var precio = $("#txt_precio").val();
     var estatus = $("#cbm_estatus").val();
-    if(servicio.length==0||estatus.length==0){
+    if(servicio.length==0||precio.length==0||estatus.length==0){
         Swal.fire("Mensaje de advertencia","El campo servicio debe tener datos","warning");
     }
     $.ajax({
@@ -74,6 +76,7 @@ function Registrar_Servicio(){
         type:'post',
         data:{
             se:servicio,
+            p:precio,
             e:estatus
         }
     }).done(function(resp){
@@ -81,6 +84,7 @@ function Registrar_Servicio(){
             if(resp==1){
                 $("#modal_registro").modal('hide');
                 listar_servicio();
+                LimpiarCampos();
               Swal.fire("Mensaje de Confirmacion","Datos guardados correctamente,Servicio registrado","success");
             }else{
                 Swal.fire("Mensaje de Advertencia","El servicio ya está existe","warning");
@@ -90,10 +94,16 @@ function Registrar_Servicio(){
 
 }
 
+function LimpiarCampos(){
+    $("#txt_servicio").val("");
+    $("#txt_precio").val("");
+}
 function Modificar_Servicio(){
     var id = $("#txtidservicio").val();
     var servicioactual = $("#txt_servicio_actual_editar").val();
     var servicionuevo = $("#txt_servicio_nuevo_editar").val();
+    var precioactual = $("#txt_precio_actual_editar").val();
+    var precionuevo = $("#txt_precio_nuevo_editar").val();
     var estatus = $("#cbm_estatus_editar").val();
     if(servicioactual.length==0||servicionuevo.length==0||estatus.length==0){
         Swal.fire("Mensaje de advertencia","El campo servicio debe tener datos","warning");
@@ -105,6 +115,8 @@ function Modificar_Servicio(){
             id:id,
             seac:servicioactual,
             senu:servicionuevo,
+            preac:precioactual,
+            prenu:precionuevo,
             es:estatus
         }
     }).done(function(resp){
@@ -112,6 +124,7 @@ function Modificar_Servicio(){
             if(resp==1){
                 $("#modal_registro").modal('hide');
                 listar_servicio();
+                LimpiarCampos();
               Swal.fire("Mensaje de Confirmacion","Datos actualizados correctamente","success");
             }else{
                 Swal.fire("Mensaje de Advertencia","El servicio ya está existe","warning");
@@ -121,9 +134,6 @@ function Modificar_Servicio(){
 
 }
 
-function LimpiarCampos(){
-    $("#txt_servicio").val("");
-}
 
 // alerta de editar!
 $('#tabla_servicio').on('click','.editar',function(){
@@ -136,5 +146,7 @@ $('#tabla_servicio').on('click','.editar',function(){
     $("#txtidservicio").val(data.servicio_id);
     $("#txt_servicio_actual_editar").val(data.servicio_nombre);
     $("#txt_servicio_nuevo_editar").val(data.servicio_nombre);
+    $("#txt_precio_actual_editar").val(data.servicio_precio);
+    $("#txt_precio_nuevo_editar").val(data.servicio_precio);
     $("#cbm_estatus_editar").val(data.servicio_estatus).trigger("change");
 })

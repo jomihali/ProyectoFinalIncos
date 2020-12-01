@@ -66,27 +66,27 @@
               <div class="row">
               <div class="col-lg-12">
                     <label for="">N documento</label>
-                    <input type="text" class="form-control" id="txt_ndoc" placeholder="Numero de documento"><br>
+                    <input type="text" class="form-control" id="txt_ndoc" maxlength="12" onkeypress="return soloNumeros(event)" placeholder="Numero de documento"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Nombres</label>
-                    <input type="text" class="form-control" id="txt_nombres" placeholder="Ingresa nombres"><br>
+                    <input type="text" class="form-control" id="txt_nombres" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa nombres"><br>
                 </div>
                   <div class="col-lg-12">
                     <label for="">Apellido paterno</label>
-                    <input type="text" class="form-control" id="txt_apepat" placeholder="Apellido paterno"><br>
+                    <input type="text" class="form-control" id="txt_apepat" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Apellido paterno"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Apellido materno</label>
-                    <input type="text" class="form-control" id="txt_apemat" placeholder="Apellido materno"><br>
+                    <input type="text" class="form-control" id="txt_apemat" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Apellido materno"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Direccion</label>
-                    <input type="text" class="form-control" id="txt_direccion" placeholder="Ingresa direccion"><br>
+                    <input type="text" class="form-control" id="txt_direccion" maxlength="80" onkeypress="return soloLetras(event)" placeholder="Ingresa direccion"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Movil</label>
-                    <input type="text" class="form-control" id="txt_movil" placeholder="Ingresa movil"><br>
+                    <input type="text" class="form-control" id="txt_movil" maxlength="8" onkeypress="return solNumeros(event)" placeholder="Ingresa movil"><br>
                 </div>
                 <div class="col-lg-12">
                 <label for="">Modelo de Computadora</label>

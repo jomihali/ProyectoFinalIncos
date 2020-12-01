@@ -5,10 +5,12 @@ if(!isset($_SESSION['S_IDUSUARIO'])){
 	header('Location: ../../../Login/index.php');
 }
 ?>
+
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
+
 require_once '../../../conexion_reportes/r_conexion.php';
-$consulta = " SELECT
+$consulta = "SELECT
 fua.fua_id, 
 consulta.consulta_descripcion, 
 consulta.consulta_diagnostico, 
@@ -22,19 +24,26 @@ cliente.cliente_nrodocumento,
 cliente.cliente_modelo, 
 especialidad.especialidad_id, 
 especialidad.especialidad_nombre
-FROM fua INNER JOIN consulta ON fua.consulta_id = consulta.consulta_id
-INNER JOIN cita ON consulta.cita_id = cita.cita_id
-INNER JOIN cliente
-ON cita.cliente_id = cliente.cliente_id
-INNER JOIN especialidad
-ON cita.especialidad_id = especialidad.especialidad_id 
-where fua.fua_id ='".$_GET['id']."'";
-  $resultado = $mysqli->query($consulta);
-  while($row = $resultado->fetch_assoc()){
-   $html='<div style="text-align:center"><h1>REPORTE DE FUA</h1></div>
-   <span><b>DNI: </b>'.$row['cliente_nrodocumento'].'</span>
-   <span><b>CLIENTE: </b>'.$row['cliente_nombre'].' '.$row['cliente_apepat'].' '.$row['cliente_apemat'].'</span>';
-  }
+FROM
+fua
+INNER JOIN
+consulta
+ON 
+  fua.consulta_id = consulta.consulta_id
+INNER JOIN
+cita
+ON 
+  consulta.cita_id = cita.cita_id
+INNER JOIN
+cliente
+ON 
+  cita.cliente_id = cliente.cliente_id
+INNER JOIN
+especialidad
+ON 
+  cita.especialidad_id = especialidad.especialidad_id WHERE fua.fua_id='".$_GET['id']."'";
+$html='<div style="text-align:center"><h1>REPORTE DE FUA</h1></div>';
+
 $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4']);
 $mpdf->WriteHTML($html);
 $mpdf->Output();

@@ -18,4 +18,4 @@
     $consulta = $MM->Registrar_Tecnico($nombre,$apepat,$apemat,$direccion,$movil,$sexo,$fenac,$nrodocumento,$especialidad,$usu,$contra,$rol,$email);
     echo $consulta;
 
-?>
+?> 

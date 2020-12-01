@@ -31,6 +31,7 @@
                         <th>#</th>
                         <th>Servicio</th>
                         <th>Fecha registro</th>
+                        <th>Precio</th>
                         <th>Estado</th>
                         <th>Acci&oacute;n</th>
                     </tr>
@@ -40,6 +41,7 @@
                         <th>#</th>
                         <th>Servicio</th>
                         <th>Fecha registro</th>
+                        <th>Precio</th>
                         <th>Estado</th>
                         <th>Acci&oacute;n</th>
                     </tr>
@@ -58,7 +60,11 @@
             <div class="modal-body">
                 <div class="col-lg-12">
                     <label for="">Nombre</label>
-                    <input type="text" class="form-control" id="txt_servicio" placeholder="Ingresa un servicio" maxlength="50" onkeypress="return"><br>
+                    <input type="text" class="form-control" id="txt_servicio" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa un servicio" maxlength="50" onkeypress="return"><br>
+                </div>
+                <div class="col-lg-12">
+                    <label for="">Precio</label>
+                    <input type="text" class="form-control" id="txt_precio" placeholder="Ingresa el precio" maxlength="4" onkeypress="return soloNumeros(event)"><br>
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
@@ -89,7 +95,13 @@
                     <input type="text" id="txtidservicio" hidden>
                     <label for="">Nombre</label>
                     <input type="text" id="txt_servicio_actual_editar"  hidden><br>
-                    <input type="text" class="form-control" id="txt_servicio_nuevo_editar"placeholder="Ingresa un servicio" maxlength="50">
+                    <input type="text" class="form-control" id="txt_servicio_nuevo_editar" maxlength="50" onkeypress="return soloLetras(event)" placeholder="Ingresa un servicio" maxlength="50">
+                </div>
+                <div class="col-lg-12">
+                    <input type="text" id="txtidservicio" hidden>
+                    <label for="">Precio</label>
+                    <input type="text" id="txt_precio_actual_editar"  hidden><br>
+                    <input type="text" class="form-control" id="txt_precio_nuevo_editar" maxlength="4" onkeypress="return soloNumeros(event)"placeholder="Ingresa un servicio" maxlength="50">
                 </div>
                 <div class="col-lg-12">
                     <label for="">Estado</label>
